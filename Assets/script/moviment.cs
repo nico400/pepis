@@ -76,6 +76,10 @@ public class moviment : MonoBehaviour
             //Decelareation
             rb.linearVelocity = Vector3.MoveTowards(horizontalVelocity, Vector3.zero, decelSpeed * Time.deltaTime) + verticalVelocity;
         }
+
+        if(!isGround)
+            //Decelareation
+            rb.linearVelocity = Vector3.MoveTowards(horizontalVelocity, dirToWalk *(MaxSpeed / 2.5f), decelSpeed * Time.deltaTime) + verticalVelocity;
     }
     Vector3 getNormal()
     {
