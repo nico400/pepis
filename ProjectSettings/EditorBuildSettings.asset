@@ -9,8 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: bf831729343d2394597a8a3df2a4a430
   - enabled: 1
-    path: Assets/Scenes/Cutsane.unity
+    path: Assets/Scenes/Cutscene/Cutsane.unity
     guid: dcc1ed020e4406b4a801778994a3ee7d
+  - enabled: 1
+    path: Assets/Scenes/Cutscene/Cutsane1.unity
+    guid: 5c764eabe4576f94d8f89cf8b674c59a
+  - enabled: 1
+    path: Assets/Scenes/Cutscene/Cutsane2.unity
+    guid: a509fa18f6ae20f4889c4a8fa780494a
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 99c9720ab356a0642a771bea13969a05
