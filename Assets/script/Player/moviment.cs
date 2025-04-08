@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class moviment : MonoBehaviour
 {
@@ -19,15 +20,21 @@ public class moviment : MonoBehaviour
     [SerializeField] bool isGround;
 
     [Header("Interactive")]
-    public bool interactive;
-    [SerializeField] bool Grab;
-    [SerializeField] Transform localPosObj;
-    public GameObject objGrab;
-
     public Vector3 upNormal { get; private set; }
     public Vector3 dirToWalk { get; private set; }
     public Vector2 dirMove { get; private set; }
+    public Vector2 dirMouse { get; private set; }
     public bool jumpInput { get; private set; }
+    public bool interactive { get; private set; }
+    public bool _launc { get; private set; }
+
+    bool runShift;
+    bool runGamepad;
+
+    [SerializeField] bool runing;
+
+    public bool canMove;
+    public bool canJump;
 
     Vector3 verticalVelocity;
     Vector3 horizontalVelocity;
@@ -36,6 +43,8 @@ public class moviment : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         instance = this;
+        canMove = true;
+        canJump = true;
     }
     // Update is called once per frame
     void Update()
@@ -44,29 +53,53 @@ public class moviment : MonoBehaviour
         upNormal = getNormal();
         isGround = getGround();
         controllerSpeedMax();
-
-        if (interactive && objGrab != null)
-        {
-            StartCoroutine(getBall());
-        }
-
     }
     void FixedUpdate()
     {
-        if (!MovimentInPillar.Instance.inPillar)
+        if (MovimentInPillar.Instance.inPillar) return;
+        if (MovimentWall.Instance.inWall) return;
+        if (!canMove) 
         {
-            movementPlayer();
-            speedcontroller();
-            jumpPlayer();
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+            return;
         }
+
+        rb.useGravity = true;
+        dirMovementPlayer();
+        speedController();
+        jumpPlayer();
     }
     void getInputs()
     {
         dirMove = inputsHandler.dirXY;
+        dirMouse = inputsHandler.mouseXY;
         jumpInput = inputsHandler.jump;
         interactive = inputsHandler.interactived;
+        _launc = inputsHandler.launc;
+        
+        if (dirMove != Vector2.zero)
+        {
+            //moving i can run
+            if(inputsHandler.runGamepad)
+                runGamepad =! runGamepad;
+
+            runShift = inputsHandler.runShift;
+
+            if (runShift || runGamepad)
+                runing = true;
+            else
+                runing = false;
+
+        }
+        else
+        {
+            //not moving not run
+            runShift = false;
+            runGamepad = false;
+        }
+            
     }
-    void movementPlayer()
+    void dirMovementPlayer()
     {
         Vector3 newRight = Vector3.Cross(Cam.forward, upNormal).normalized;
         Vector3 newFoward = Vector3.Cross(newRight, upNormal).normalized;
@@ -74,6 +107,7 @@ public class moviment : MonoBehaviour
     }
     void jumpPlayer()
     {
+        if (!canJump) return;
         if (jumpInput && isGround)
         {
             float jumpforce = Mathf.Sqrt(2 * 9 * jumpHeight);
@@ -81,7 +115,7 @@ public class moviment : MonoBehaviour
         }
     }
     
-    void speedcontroller()
+    void speedController()
     {
         verticalVelocity = Vector3.Project(rb.linearVelocity, upNormal.normalized);
         horizontalVelocity = Vector3.ProjectOnPlane(rb.linearVelocity, upNormal.normalized);
@@ -94,11 +128,6 @@ public class moviment : MonoBehaviour
             //Decelareation
             rb.linearVelocity = Vector3.MoveTowards(horizontalVelocity, Vector3.zero, decelSpeed * Time.deltaTime) + verticalVelocity;
         }
-
-        if(!isGround)
-            //Decelareation
-            rb.linearVelocity = Vector3.MoveTowards(horizontalVelocity, dirToWalk *(MaxSpeed / 1.5f), (decelSpeed  / 2) * Time.deltaTime) + verticalVelocity;
-
     }
     Vector3 getNormal()
     {
@@ -121,40 +150,24 @@ public class moviment : MonoBehaviour
     void controllerSpeedMax()
     {
 
-        if (MaxSpeed > 15)
+        if (MaxSpeed > 10)
         {
-            MaxSpeed = Mathf.Lerp(MaxSpeed, 15, 0.25f * Time.deltaTime);
+            MaxSpeed = Mathf.Lerp(MaxSpeed, 10, 0.25f * Time.deltaTime);
         }
-        else if (!Grab && MaxSpeed < 15)
+        else if (!launchBall.instance.Grab && runing)
         {
-            MaxSpeed = 15;
+            MaxSpeed = 10;
         }
-        if (Grab)
+        else if (!launchBall.instance.Grab && (MaxSpeed < 7 || MaxSpeed > 7) && !runing)
+        {
+            MaxSpeed = 7;
+        }
+        if (launchBall.instance.Grab)
         {
             MaxSpeed = 4;
         }
     }
-    IEnumerator getBall()
-    {
-        Grab = !Grab;
-        while (Grab)
-        {
-            objGrab.GetComponent<Rigidbody>().mass = 10;
-            objGrab.GetComponent<Rigidbody>().useGravity = false;
-            objGrab.transform.position = localPosObj.position;
-            objGrab.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
-            objGrab.transform.rotation = Quaternion.LookRotation(transform.forward, transform.up);
-
-            yield return null;
-        }
-        if (!Grab)
-        {
-            objGrab.GetComponent<Rigidbody>().mass = 1;
-            objGrab.GetComponent<Rigidbody>().useGravity = true;
-            objGrab.GetComponent<Rigidbody>().linearVelocity = objGrab.transform.forward * 10f + objGrab.transform.up * 10f;
-            yield return null;
-        }
-    }
+    
     public float addVelocity(float add, Vector3 dir, bool isLaunch, Vector3 arcPos)
     {
         if (isLaunch)
@@ -170,5 +183,9 @@ public class moviment : MonoBehaviour
     {       
         dirToWalk = Vector3.zero;
         yield return new WaitForSecondsRealtime(1);
+    }
+    public bool isGrab(bool _isGrab)
+    {
+        return _isGrab;
     }
 }

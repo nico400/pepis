@@ -1,19 +1,40 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class getInputsHandler : MonoBehaviour
 {
     InputsAction inputAction;
     public Vector2 dirXY { get; private set; }
+    public Vector2 mouseXY { get; private set; }
     public bool jump { get; private set; }
+    public bool runShift { get; private set; }
+    public bool runGamepad { get; private set; }
+    public bool launc { get; private set; }
     public bool interactived { get; private set; }
+
+    InputAction launchBall;
+    InputAction inter;
+    InputAction ruing;
+    InputAction ruingGamepad;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        inputAction = new InputsAction();
+        inputAction = new InputsAction();     
     }
     void OnEnable()
     {
         inputAction.Enable();
+        launchBall = inputAction.Player.launchBall;
+        inter = inputAction.Player.Interact;
+        ruing = inputAction.Player.runing;
+        ruingGamepad = inputAction.Player.runGamepad;
+
+        launchBall.started += _Startlaunc;
+        launchBall.canceled += _Stoplaunc;
+        inter.started += Startinteractive;
+        inter.canceled += Stoptinteractive;
+
+  
     }
     void OnDisable()
     {
@@ -24,7 +45,47 @@ public class getInputsHandler : MonoBehaviour
     void Update()
     {
         dirXY = inputAction.Player.move.ReadValue<Vector2>();
+        mouseXY = inputAction.Player.mouseAim.ReadValue<Vector2>();
         jump = inputAction.Player.jump.triggered;
-        interactived = inputAction.Player.Interact.triggered;
+
+        var gamepad = Gamepad.current;
+        if (gamepad == null)
+        {
+            ruing.started += StartRun;
+            ruing.canceled += StopRun;
+        }
+        else
+        {
+            runGamepad = ruingGamepad.triggered;
+            runShift = false;
+
+            ruing.started -= StartRun;
+            ruing.canceled -= StopRun;
+        }     
+    }
+    void Startinteractive(InputAction.CallbackContext contex)
+    {
+        interactived = true;
+    }
+    void Stoptinteractive(InputAction.CallbackContext contex)
+    {
+        interactived = false;
+    }
+
+    void _Startlaunc(InputAction.CallbackContext contex)
+    {
+        launc = true;
+    }
+    void _Stoplaunc(InputAction.CallbackContext contex)
+    {
+        launc = false;
+    }
+    void StartRun(InputAction.CallbackContext contex)
+    {
+        runShift = true;
+    }
+    void StopRun(InputAction.CallbackContext contex)
+    {
+        runShift = false;
     }
 }

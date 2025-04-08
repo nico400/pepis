@@ -28,7 +28,7 @@ public class MovimentInPillar : MonoBehaviour
             movimentPillar();
         }else
         {
-            rb.useGravity = true;
+
             pillarCurrent = null;
         }
 
@@ -38,8 +38,6 @@ public class MovimentInPillar : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         RaycastHit hit;
         Collider[] collPillar = Physics.OverlapSphere(transform.position, radiusSphereColl, pillarLayer);
-
-        
 
         if (collPillar.Length > 0)
             pillarCurrent = collPillar[0].transform;
@@ -55,8 +53,7 @@ public class MovimentInPillar : MonoBehaviour
                 Vector3 dirToUpAndDown = transform.up * moviment.instance.dirMove.y;
 
                 transform.position = Vector3.Lerp(transform.position, hit.point, 2 * Time.deltaTime);
-                transform.position += dirTorotate * 1.55f * Time.deltaTime;
-                transform.position += dirToUpAndDown * 1.55f * Time.deltaTime;
+                rb.linearVelocity = (dirToUpAndDown * 3) + (dirTorotate * 3f);
             }
         }
        
@@ -67,7 +64,7 @@ public class MovimentInPillar : MonoBehaviour
     }
     IEnumerator jumpInPillar()
     {
-        rb.linearVelocity = (-transform.forward * 18 + transform.up * 8);
+        rb.linearVelocity = (-transform.forward * 8 + transform.up * 8);
         inPillar = false;      
         yield return null;
     }
