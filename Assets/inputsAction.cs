@@ -117,6 +117,42 @@ public partial class @InputsAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""launchBall"",
+                    ""type"": ""Button"",
+                    ""id"": ""fdf6cb83-e471-48f3-a5ee-ff998d0f06c7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""mouseAim"",
+                    ""type"": ""Value"",
+                    ""id"": ""6a221d31-b66a-4be6-b352-6908eac7ba16"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""runing"",
+                    ""type"": ""Button"",
+                    ""id"": ""1963035d-ea6f-4afa-88b3-3d1fb5baca2e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""runGamepad"",
+                    ""type"": ""Button"",
+                    ""id"": ""56e9e891-ce84-467b-86db-eca8190938a5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -273,6 +309,160 @@ public partial class @InputsAction: IInputActionCollection2, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e5fcbca-1364-4807-9c9d-86e660f68d6e"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""launchBall"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3fc077da-3281-4c3b-a43c-bf21abb9f4d1"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""launchBall"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""mouse"",
+                    ""id"": ""f1521200-a081-49b0-aa6c-22fe9536b179"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""mouseAim"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""9149c6bd-670d-4e9d-90ad-e9ac17320f3a"",
+                    ""path"": ""<Mouse>/delta/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""mouseAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""9fc32ec4-5327-439f-a512-f958b5b50c45"",
+                    ""path"": ""<Mouse>/delta/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""mouseAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""8094cb14-2b71-44bf-9091-c9e209b5a3b4"",
+                    ""path"": ""<Mouse>/delta/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""mouseAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""a8fef5bd-b5ab-4e67-b347-cccc798162e0"",
+                    ""path"": ""<Mouse>/delta/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""mouseAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""gamepad"",
+                    ""id"": ""a9d8898a-5d7d-4324-b6e6-aff0ff3e373a"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""mouseAim"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""9d5e8574-fad8-4dc2-812d-e81f66103cf7"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""mouseAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""e39b80f8-cb64-4327-abdc-c23db2c3dc8b"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""mouseAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""5cde7877-210a-492d-a5de-5592c451d0b9"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""mouseAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""8fea9df0-d7b8-4491-86ea-df3c812055ad"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""mouseAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc751d65-11cd-460a-a64e-5e59550d0252"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""runing"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""048889c2-d0c3-454c-b8c4-dafb7dee7520"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""runGamepad"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -284,6 +474,10 @@ public partial class @InputsAction: IInputActionCollection2, IDisposable
         m_Player_move = m_Player.FindAction("move", throwIfNotFound: true);
         m_Player_jump = m_Player.FindAction("jump", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_launchBall = m_Player.FindAction("launchBall", throwIfNotFound: true);
+        m_Player_mouseAim = m_Player.FindAction("mouseAim", throwIfNotFound: true);
+        m_Player_runing = m_Player.FindAction("runing", throwIfNotFound: true);
+        m_Player_runGamepad = m_Player.FindAction("runGamepad", throwIfNotFound: true);
     }
 
     ~@InputsAction()
@@ -367,6 +561,10 @@ public partial class @InputsAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_move;
     private readonly InputAction m_Player_jump;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_launchBall;
+    private readonly InputAction m_Player_mouseAim;
+    private readonly InputAction m_Player_runing;
+    private readonly InputAction m_Player_runGamepad;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -390,6 +588,22 @@ public partial class @InputsAction: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Interact".
         /// </summary>
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/launchBall".
+        /// </summary>
+        public InputAction @launchBall => m_Wrapper.m_Player_launchBall;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/mouseAim".
+        /// </summary>
+        public InputAction @mouseAim => m_Wrapper.m_Player_mouseAim;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/runing".
+        /// </summary>
+        public InputAction @runing => m_Wrapper.m_Player_runing;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/runGamepad".
+        /// </summary>
+        public InputAction @runGamepad => m_Wrapper.m_Player_runGamepad;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -425,6 +639,18 @@ public partial class @InputsAction: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @launchBall.started += instance.OnLaunchBall;
+            @launchBall.performed += instance.OnLaunchBall;
+            @launchBall.canceled += instance.OnLaunchBall;
+            @mouseAim.started += instance.OnMouseAim;
+            @mouseAim.performed += instance.OnMouseAim;
+            @mouseAim.canceled += instance.OnMouseAim;
+            @runing.started += instance.OnRuning;
+            @runing.performed += instance.OnRuning;
+            @runing.canceled += instance.OnRuning;
+            @runGamepad.started += instance.OnRunGamepad;
+            @runGamepad.performed += instance.OnRunGamepad;
+            @runGamepad.canceled += instance.OnRunGamepad;
         }
 
         /// <summary>
@@ -445,6 +671,18 @@ public partial class @InputsAction: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @launchBall.started -= instance.OnLaunchBall;
+            @launchBall.performed -= instance.OnLaunchBall;
+            @launchBall.canceled -= instance.OnLaunchBall;
+            @mouseAim.started -= instance.OnMouseAim;
+            @mouseAim.performed -= instance.OnMouseAim;
+            @mouseAim.canceled -= instance.OnMouseAim;
+            @runing.started -= instance.OnRuning;
+            @runing.performed -= instance.OnRuning;
+            @runing.canceled -= instance.OnRuning;
+            @runGamepad.started -= instance.OnRunGamepad;
+            @runGamepad.performed -= instance.OnRunGamepad;
+            @runGamepad.canceled -= instance.OnRunGamepad;
         }
 
         /// <summary>
@@ -506,5 +744,33 @@ public partial class @InputsAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInteract(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "launchBall" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLaunchBall(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "mouseAim" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMouseAim(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "runing" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRuning(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "runGamepad" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRunGamepad(InputAction.CallbackContext context);
     }
 }
