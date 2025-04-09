@@ -8,6 +8,7 @@ public class RotateScrew : MonoBehaviour
 
     [SerializeField] Vector3 rotateOrigin;
     [SerializeField] Vector3 rotateDirection;
+    [SerializeField] Vector3 rotateDirectionTwo;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -36,10 +37,27 @@ public class RotateScrew : MonoBehaviour
             }
             else
             {
-                Quaternion newRot = Quaternion.Euler(rotateOrigin);
-                transform.rotation = Quaternion.Slerp(transform.rotation, newRot, Time.deltaTime);
-                if (startTime >= 12)
-                    break;
+                if (rotateDirectionTwo != Vector3.zero)
+                {                   
+                    if (startTime < 12 && startTime > 6)
+                    {
+                        Quaternion newRot = Quaternion.Euler(rotateDirectionTwo);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, newRot, Time.deltaTime);
+                    }else
+                    {
+                        Quaternion newRot = Quaternion.Euler(rotateOrigin);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, newRot, Time.deltaTime);
+                        if (startTime >= 18)
+                            break;
+                    }
+                }
+                else
+                {
+                    Quaternion newRot = Quaternion.Euler(rotateOrigin);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, newRot, Time.deltaTime);
+                    if (startTime >= 12)
+                        break;
+                }     
             }
 
             yield return null;

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ball
+  - DestryWall
   layers:
   - Default
   - TransparentFX
