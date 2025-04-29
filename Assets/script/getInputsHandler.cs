@@ -32,9 +32,7 @@ public class getInputsHandler : MonoBehaviour
         launchBall.started += _Startlaunc;
         launchBall.canceled += _Stoplaunc;
         inter.started += Startinteractive;
-        inter.canceled += Stoptinteractive;
-
-  
+        inter.canceled += Stoptinteractive; 
     }
     void OnDisable()
     {
