@@ -4,6 +4,8 @@ public class controllCams : MonoBehaviour
 {
     [SerializeField] GameObject cam1;
     [SerializeField] GameObject cam2;
+    [SerializeField] GameObject camShake;
+
     // Update is called once per frame
     void Start()
     {
@@ -14,12 +16,23 @@ public class controllCams : MonoBehaviour
         if (launchBall.instance.aimEnable)
         {
             //aim
-            cam1.gameObject.SetActive (false);
-            cam2.gameObject.SetActive (true);
-        }else
+            cam1.gameObject.SetActive(false);
+            cam2.gameObject.SetActive(true);
+            camShake.gameObject.SetActive(false);
+        } 
+        /*else
         {
+            //shake
+            cam2.gameObject.SetActive(false);
+            cam1.gameObject.SetActive(false);
+            camShake.gameObject.SetActive(true);
+        }*/
+        else
+        {
+            //normal
             cam2.gameObject.SetActive(false);
             cam1.gameObject.SetActive(true);
+            camShake.gameObject.SetActive(false);
         }
     }
 }
