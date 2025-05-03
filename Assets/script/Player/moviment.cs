@@ -31,7 +31,7 @@ public class moviment : MonoBehaviour
     bool runShift;
     bool runGamepad;
 
-    [SerializeField] bool runing;
+    public bool runing { get; private set; }
 
     public bool canMove;
     public bool canJump;
@@ -160,7 +160,7 @@ public class moviment : MonoBehaviour
         }
         else if (!launchBall.instance.Grab && (MaxSpeed < 7 || MaxSpeed > 7) && !runing)
         {
-            MaxSpeed = 7;
+            MaxSpeed = 5;
         }
         if (launchBall.instance.Grab)
         {
