@@ -142,7 +142,7 @@ public class moviment : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 posOffset = transform.position + transform.up * 0.35f;
-        if (Physics.Raycast(posOffset, -transform.up, out hit, 0.65f, ground))
+        if (Physics.Raycast(posOffset, -transform.up, out hit, 0.75f, ground))
             return true;
         else
             return false;
