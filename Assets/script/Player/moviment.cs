@@ -31,7 +31,7 @@ public class moviment : MonoBehaviour
     bool runShift;
     bool runGamepad;
 
-    [SerializeField] bool runing;
+    public bool runing { get; private set; }
 
     public bool canMove;
     public bool canJump;
@@ -142,7 +142,7 @@ public class moviment : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 posOffset = transform.position + transform.up * 0.35f;
-        if (Physics.Raycast(posOffset, -transform.up, out hit, 0.65f, ground))
+        if (Physics.Raycast(posOffset, -transform.up, out hit, 0.75f, ground))
             return true;
         else
             return false;
@@ -160,7 +160,7 @@ public class moviment : MonoBehaviour
         }
         else if (!launchBall.instance.Grab && (MaxSpeed < 7 || MaxSpeed > 7) && !runing)
         {
-            MaxSpeed = 7;
+            MaxSpeed = 5;
         }
         if (launchBall.instance.Grab)
         {
