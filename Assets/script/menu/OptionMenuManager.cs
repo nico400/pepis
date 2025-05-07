@@ -34,6 +34,12 @@ public class OptionMenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (optionInventoryPainel == null)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            return;
+        }
+            
         if (getInputHandler.openUiPinal && !optionOpened)
         {
             optionOpened = true;
