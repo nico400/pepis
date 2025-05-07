@@ -11,11 +11,13 @@ public class getInputsHandler : MonoBehaviour
     public bool runGamepad { get; private set; }
     public bool launc { get; private set; }
     public bool interactived { get; private set; }
+    public bool exitUiPainel { get; private set; }
 
     InputAction launchBall;
     InputAction inter;
     InputAction ruing;
     InputAction ruingGamepad;
+    InputAction exitUi;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -28,11 +30,12 @@ public class getInputsHandler : MonoBehaviour
         inter = inputAction.Player.Interact;
         ruing = inputAction.Player.runing;
         ruingGamepad = inputAction.Player.runGamepad;
+        exitUi = inputAction.ui.ExitPainel;
 
         launchBall.started += _Startlaunc;
         launchBall.canceled += _Stoplaunc;
         inter.started += Startinteractive;
-        inter.canceled += Stoptinteractive; 
+        inter.canceled += Stoptinteractive;     
     }
     void OnDisable()
     {
@@ -45,6 +48,7 @@ public class getInputsHandler : MonoBehaviour
         dirXY = inputAction.Player.move.ReadValue<Vector2>();
         mouseXY = inputAction.Player.mouseAim.ReadValue<Vector2>();
         jump = inputAction.Player.jump.triggered;
+        exitUiPainel = exitUi.triggered;
 
         var gamepad = Gamepad.current;
         if (gamepad == null)

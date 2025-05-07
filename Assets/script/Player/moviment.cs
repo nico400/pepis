@@ -31,7 +31,7 @@ public class moviment : MonoBehaviour
     bool runShift;
     bool runGamepad;
 
-    public bool runing { get; private set; }
+    public bool runing;
 
     public bool canMove;
     public bool canJump;
@@ -76,7 +76,15 @@ public class moviment : MonoBehaviour
         jumpInput = inputsHandler.jump;
         interactive = inputsHandler.interactived;
         _launc = inputsHandler.launc;
-        
+
+        if (dirMove == Vector2.zero)
+        {
+            //not moving not run
+            runShift = false;
+            runGamepad = false;
+            runing = false;
+        }
+
         if (dirMove != Vector2.zero)
         {
             //moving i can run
@@ -91,13 +99,8 @@ public class moviment : MonoBehaviour
                 runing = false;
 
         }
-        else
-        {
-            //not moving not run
-            runShift = false;
-            runGamepad = false;
-        }
-            
+
+       
     }
     void dirMovementPlayer()
     {

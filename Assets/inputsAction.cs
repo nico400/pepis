@@ -465,6 +465,45 @@ public partial class @InputsAction: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""ui"",
+            ""id"": ""5ed82136-b8d6-4e24-9e49-92d3d8d8a84b"",
+            ""actions"": [
+                {
+                    ""name"": ""ExitPainel"",
+                    ""type"": ""Button"",
+                    ""id"": ""ddeff5c9-6b90-4864-b63d-7443da6323f0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""1ea26a2c-cc15-443a-8763-9183543a2895"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ExitPainel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""728ca927-47d9-4a0b-a7a7-41ed9c14774c"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ExitPainel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -478,11 +517,15 @@ public partial class @InputsAction: IInputActionCollection2, IDisposable
         m_Player_mouseAim = m_Player.FindAction("mouseAim", throwIfNotFound: true);
         m_Player_runing = m_Player.FindAction("runing", throwIfNotFound: true);
         m_Player_runGamepad = m_Player.FindAction("runGamepad", throwIfNotFound: true);
+        // ui
+        m_ui = asset.FindActionMap("ui", throwIfNotFound: true);
+        m_ui_ExitPainel = m_ui.FindAction("ExitPainel", throwIfNotFound: true);
     }
 
     ~@InputsAction()
     {
         UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, InputsAction.Player.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_ui.enabled, "This will cause a leak and performance issues, InputsAction.ui.Disable() has not been called.");
     }
 
     /// <summary>
@@ -716,6 +759,102 @@ public partial class @InputsAction: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="PlayerActions" /> instance referencing this action map.
     /// </summary>
     public PlayerActions @Player => new PlayerActions(this);
+
+    // ui
+    private readonly InputActionMap m_ui;
+    private List<IUiActions> m_UiActionsCallbackInterfaces = new List<IUiActions>();
+    private readonly InputAction m_ui_ExitPainel;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "ui".
+    /// </summary>
+    public struct UiActions
+    {
+        private @InputsAction m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public UiActions(@InputsAction wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "ui/ExitPainel".
+        /// </summary>
+        public InputAction @ExitPainel => m_Wrapper.m_ui_ExitPainel;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_ui; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="UiActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(UiActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="UiActions" />
+        public void AddCallbacks(IUiActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UiActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UiActionsCallbackInterfaces.Add(instance);
+            @ExitPainel.started += instance.OnExitPainel;
+            @ExitPainel.performed += instance.OnExitPainel;
+            @ExitPainel.canceled += instance.OnExitPainel;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="UiActions" />
+        private void UnregisterCallbacks(IUiActions instance)
+        {
+            @ExitPainel.started -= instance.OnExitPainel;
+            @ExitPainel.performed -= instance.OnExitPainel;
+            @ExitPainel.canceled -= instance.OnExitPainel;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="UiActions.UnregisterCallbacks(IUiActions)" />.
+        /// </summary>
+        /// <seealso cref="UiActions.UnregisterCallbacks(IUiActions)" />
+        public void RemoveCallbacks(IUiActions instance)
+        {
+            if (m_Wrapper.m_UiActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="UiActions.AddCallbacks(IUiActions)" />
+        /// <seealso cref="UiActions.RemoveCallbacks(IUiActions)" />
+        /// <seealso cref="UiActions.UnregisterCallbacks(IUiActions)" />
+        public void SetCallbacks(IUiActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UiActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UiActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="UiActions" /> instance referencing this action map.
+    /// </summary>
+    public UiActions @ui => new UiActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player" which allows adding and removing callbacks.
     /// </summary>
@@ -772,5 +911,20 @@ public partial class @InputsAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRunGamepad(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "ui" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="UiActions.AddCallbacks(IUiActions)" />
+    /// <seealso cref="UiActions.RemoveCallbacks(IUiActions)" />
+    public interface IUiActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "ExitPainel" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnExitPainel(InputAction.CallbackContext context);
     }
 }
