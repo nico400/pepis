@@ -17,7 +17,7 @@ public class moviment : MonoBehaviour
     [SerializeField] Transform Cam;
     [SerializeField] LayerMask ground;
     [SerializeField] getInputsHandler inputsHandler;
-    [SerializeField] bool isGround;
+    public bool isGround { get; private set; }
 
     [Header("Interactive")]
     public Vector3 upNormal { get; private set; }

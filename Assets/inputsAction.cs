@@ -478,6 +478,15 @@ public partial class @InputsAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenPainel"",
+                    ""type"": ""Button"",
+                    ""id"": ""845f6a15-a76d-4f3b-9169-e01bdfccd0b5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -502,6 +511,28 @@ public partial class @InputsAction: IInputActionCollection2, IDisposable
                     ""action"": ""ExitPainel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bdb26edc-9d83-4948-8546-a2867a5e4509"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenPainel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2aa4478a-75d9-424b-bd82-5208f6445a4f"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenPainel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -520,6 +551,7 @@ public partial class @InputsAction: IInputActionCollection2, IDisposable
         // ui
         m_ui = asset.FindActionMap("ui", throwIfNotFound: true);
         m_ui_ExitPainel = m_ui.FindAction("ExitPainel", throwIfNotFound: true);
+        m_ui_OpenPainel = m_ui.FindAction("OpenPainel", throwIfNotFound: true);
     }
 
     ~@InputsAction()
@@ -764,6 +796,7 @@ public partial class @InputsAction: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_ui;
     private List<IUiActions> m_UiActionsCallbackInterfaces = new List<IUiActions>();
     private readonly InputAction m_ui_ExitPainel;
+    private readonly InputAction m_ui_OpenPainel;
     /// <summary>
     /// Provides access to input actions defined in input action map "ui".
     /// </summary>
@@ -779,6 +812,10 @@ public partial class @InputsAction: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "ui/ExitPainel".
         /// </summary>
         public InputAction @ExitPainel => m_Wrapper.m_ui_ExitPainel;
+        /// <summary>
+        /// Provides access to the underlying input action "ui/OpenPainel".
+        /// </summary>
+        public InputAction @OpenPainel => m_Wrapper.m_ui_OpenPainel;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -808,6 +845,9 @@ public partial class @InputsAction: IInputActionCollection2, IDisposable
             @ExitPainel.started += instance.OnExitPainel;
             @ExitPainel.performed += instance.OnExitPainel;
             @ExitPainel.canceled += instance.OnExitPainel;
+            @OpenPainel.started += instance.OnOpenPainel;
+            @OpenPainel.performed += instance.OnOpenPainel;
+            @OpenPainel.canceled += instance.OnOpenPainel;
         }
 
         /// <summary>
@@ -822,6 +862,9 @@ public partial class @InputsAction: IInputActionCollection2, IDisposable
             @ExitPainel.started -= instance.OnExitPainel;
             @ExitPainel.performed -= instance.OnExitPainel;
             @ExitPainel.canceled -= instance.OnExitPainel;
+            @OpenPainel.started -= instance.OnOpenPainel;
+            @OpenPainel.performed -= instance.OnOpenPainel;
+            @OpenPainel.canceled -= instance.OnOpenPainel;
         }
 
         /// <summary>
@@ -926,5 +969,12 @@ public partial class @InputsAction: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnExitPainel(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "OpenPainel" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnOpenPainel(InputAction.CallbackContext context);
     }
 }

@@ -12,12 +12,14 @@ public class getInputsHandler : MonoBehaviour
     public bool launc { get; private set; }
     public bool interactived { get; private set; }
     public bool exitUiPainel { get; private set; }
+    public bool openUiPinal { get; private set; }
 
     InputAction launchBall;
     InputAction inter;
     InputAction ruing;
     InputAction ruingGamepad;
     InputAction exitUi;
+    InputAction openInventory;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -31,6 +33,7 @@ public class getInputsHandler : MonoBehaviour
         ruing = inputAction.Player.runing;
         ruingGamepad = inputAction.Player.runGamepad;
         exitUi = inputAction.ui.ExitPainel;
+        openInventory = inputAction.ui.OpenPainel;
 
         launchBall.started += _Startlaunc;
         launchBall.canceled += _Stoplaunc;
@@ -49,6 +52,7 @@ public class getInputsHandler : MonoBehaviour
         mouseXY = inputAction.Player.mouseAim.ReadValue<Vector2>();
         jump = inputAction.Player.jump.triggered;
         exitUiPainel = exitUi.triggered;
+        openUiPinal = openInventory.triggered;
 
         var gamepad = Gamepad.current;
         if (gamepad == null)

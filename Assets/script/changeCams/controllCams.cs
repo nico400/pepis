@@ -6,11 +6,6 @@ public class controllCams : MonoBehaviour
     [SerializeField] GameObject cam2;
     [SerializeField] GameObject camShake;
 
-    // Update is called once per frame
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
     void Update()
     {
         if (launchBall.instance.aimEnable)

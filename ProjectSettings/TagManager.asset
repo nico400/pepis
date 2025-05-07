@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ball
   - DestryWall
+  - inventoy
+  - Option
   layers:
   - Default
   - TransparentFX

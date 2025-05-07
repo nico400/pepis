@@ -392,6 +392,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "OpenPainel",
+                    "type": "Button",
+                    "id": "845f6a15-a76d-4f3b-9169-e01bdfccd0b5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -414,6 +423,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "ExitPainel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bdb26edc-9d83-4948-8546-a2867a5e4509",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenPainel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2aa4478a-75d9-424b-bd82-5208f6445a4f",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenPainel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
