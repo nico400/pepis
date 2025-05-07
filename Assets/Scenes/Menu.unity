@@ -1889,10 +1889,10 @@ MonoBehaviour:
   painelOption: {fileID: 965150857}
   GameOptions: {fileID: 327406921}
   input: {fileID: 726333945}
-  img: {fileID: 982003406}
-  imgTransition: {fileID: 982003408}
+  imgGameObj: {fileID: 982003406}
+  img: {fileID: 982003408}
   black: {r: 0, g: 0, b: 0, a: 1}
-  invisible: {r: 1, g: 1, b: 1, a: 0}
+  transition: 0
 --- !u!1 &688023398
 GameObject:
   m_ObjectHideFlags: 0

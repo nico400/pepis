@@ -9,27 +9,34 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject GameOptions;
     [SerializeField] getInputsHandler input;
 
-    [SerializeField] GameObject img;
+    [SerializeField] GameObject imgGameObj;
+    [SerializeField] Image img;
     [SerializeField] Color black;
-    [SerializeField] Color invisible;
+    [SerializeField] bool transition;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {       
         painelOption.SetActive(false);
         GameOptions.SetActive(true);
-
-        img.SetActive(false);
+        transition = false;
+        imgGameObj.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
-    {   
+    {
+        float timing = 0;
+        timing += Time.deltaTime;
+        float time = 0.74f / timing;
+
         if (input.exitUiPainel)
         {        
             painelOption.SetActive(false);
             GameOptions.SetActive(true);
         }
+        if (transition)
+            img.color = Color.Lerp(img.color, black, time * Time.deltaTime);
     }
     public void OpenOptionMenu()
     {
@@ -38,14 +45,14 @@ public class MainMenu : MonoBehaviour
     }
     public void PlayOption()
     {
-        img.SetActive(true);
-        //img.GetComponent(Image).color = Color.Lerp(imgTransition.color, black, 0.55f * Time.deltaTime);
+        imgGameObj.SetActive(true);
         StartCoroutine(loadPlay());
+        transition = true;
     }
 
     IEnumerator loadPlay()
-    {       
-        yield return new WaitForSeconds(3);
+    {
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene("Startcutscene");
     }
 }

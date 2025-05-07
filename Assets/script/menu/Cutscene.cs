@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Cutscene : MonoBehaviour
 {
     [SerializeField] int countIndex;
@@ -48,6 +48,9 @@ public class Cutscene : MonoBehaviour
                     text[i].SetActive(false);
                 }
             }
+        }else
+        {
+            SceneManager.LoadScene("Hub");
         }
         
     }
