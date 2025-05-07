@@ -3,7 +3,7 @@ using UnityEngine;
 public class TowerComp : MonoBehaviour
 {
     [SerializeField] int idTower;
-    [SerializeField] bool activeTower;
+    public bool activeTower {  get; private set; }
 
     private void Start()
     {
