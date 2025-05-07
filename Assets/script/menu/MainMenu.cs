@@ -1,16 +1,25 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] GameObject painelOption;
     [SerializeField] GameObject GameOptions;
     [SerializeField] getInputsHandler input;
+
+    [SerializeField] GameObject img;
+    [SerializeField] Color black;
+    [SerializeField] Color invisible;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {       
         painelOption.SetActive(false);
         GameOptions.SetActive(true);
+
+        img.SetActive(false);
     }
 
     // Update is called once per frame
@@ -29,6 +38,14 @@ public class MainMenu : MonoBehaviour
     }
     public void PlayOption()
     {
-        SceneManager.LoadScene("Hub");
+        img.SetActive(true);
+        //img.GetComponent(Image).color = Color.Lerp(imgTransition.color, black, 0.55f * Time.deltaTime);
+        StartCoroutine(loadPlay());
+    }
+
+    IEnumerator loadPlay()
+    {       
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("Startcutscene");
     }
 }
