@@ -42,7 +42,7 @@ public class DirectionPushPull : MonoBehaviour
             if (i < pointsToMove.Length - 1)
             {
                 Vector3 directionToNewPoint = pointsToMove[i].position - pointsToMove[i + 1].position;
-                Vector3 BackOrFowardToPoint
+               // Vector3 BackOrFowardToPoint = vec;
             }
             
 
