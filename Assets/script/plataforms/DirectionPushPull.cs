@@ -2,12 +2,17 @@ using UnityEngine;
 
 public class DirectionPushPull : MonoBehaviour
 {
-
+    [SerializeField] Transform Player;
     [SerializeField] GameObject objToPush;
     [SerializeField] Transform pointStart;
 
     [SerializeField] Transform[] pointsToMove;
     [SerializeField] Transform currentPoint;
+    [SerializeField] Transform nextPoint;
+    [SerializeField] Transform backPoint;
+
+    Vector3 dirToFoward;
+    Vector3 dirToBackward;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,7 +32,6 @@ public class DirectionPushPull : MonoBehaviour
                 pointsToMove[i].LookAt(pointsToMove[i + 1]);
             }else if(i >= pointsToMove.Length - 1)
             {
-                print(pointsToMove[i]);
                 //last point look to penults
                 pointsToMove[i].LookAt(pointsToMove[i - 1]);
             }
@@ -36,16 +40,29 @@ public class DirectionPushPull : MonoBehaviour
             if (distanceToPoint <= 0)
             {
                 currentPoint = pointsToMove[i];
+                if(i == 0)
+                {
+                    nextPoint = pointsToMove[i + 1];
+                    backPoint = null;
+                }
+                else if (i < pointsToMove.Length - 1)
+                {
+                    nextPoint = pointsToMove[i + 1];
+                    backPoint = pointsToMove[i - 1];
+                }else
+                {
+                    nextPoint = null;
+                    backPoint = pointsToMove[i - 1];
+                }
             }
+            //direction to next and to back
+            if(nextPoint != null)
+                dirToFoward = (nextPoint.position - currentPoint.position).normalized;
+            if(backPoint != null)
+                dirToBackward = (backPoint.position - currentPoint.position).normalized;
 
-            //direction push or pull
-            if (i < pointsToMove.Length - 1)
-            {
-                Vector3 directionToNewPoint = pointsToMove[i].position - pointsToMove[i + 1].position;
-               // Vector3 BackOrFowardToPoint = vec;
-            }
-            
-
+            Debug.DrawRay(objToPush.transform.position, dirToFoward * 2, Color.blue);
+            Debug.DrawRay(objToPush.transform.position, dirToBackward * 2, Color.blue);
         }
     }
 
