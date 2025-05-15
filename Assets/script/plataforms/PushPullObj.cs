@@ -3,33 +3,32 @@ using UnityEngine;
 public class PushPullObj : MonoBehaviour
 {
     [SerializeField] DirectionPushPull _directionPushPull;
-    [SerializeField] float nextPointBackOrFoward;
-    [SerializeField] float backPointBackOrFoward;
+    [SerializeField] Transform player;
 
     [SerializeField] Vector3 pointToPullPush;
+    
 
     // Update is called once per frame
     void Update()
     {
         
-        nextPointBackOrFoward = _directionPushPull.backOrFoward_nextPoint;
-        backPointBackOrFoward = _directionPushPull.backOrFoward_backPoint;
+        Vector3 drToPlayer = (player.position - transform.position).normalized;
+        drToPlayer.y = 0;
+        float angleToPlayer = Vector3.SignedAngle(drToPlayer, transform.forward,Vector3.up);
+       /// print(angleToPlayer);
 
-        if (nextPointBackOrFoward > 0.8f)
+        if (angleToPlayer < 45 && angleToPlayer > -45)
         {
-            pointToPullPush = transform.position + transform.forward;
-        }
-        else if(nextPointBackOrFoward < -0.8f)
+            print("frente");
+        }else if (angleToPlayer > 45 && angleToPlayer < 135)
         {
-            pointToPullPush = transform.position + (transform.forward * -1);
-        }
-        if (backPointBackOrFoward > 0.8f)
+            print("esquerda");
+        }else if (angleToPlayer > 135 && angleToPlayer < -135)
         {
-            pointToPullPush = transform.position + transform.right;
-        }
-        else if (backPointBackOrFoward < -0.8f)
+            print("baixo");
+        }else if (angleToPlayer < -135 && angleToPlayer < - 45)
         {
-            pointToPullPush = transform.position + (transform.right * -1);
+            print("direita");
         }
 
     }
