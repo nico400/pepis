@@ -61,7 +61,7 @@ public class launchBall : MonoBehaviour
     IEnumerator launBall(Vector3 velocity)
     {
         
-        if (moviment.instance._launc)
+        if (moviment.instance.holdObj)
         {
             //draw trajectory
             line.enabled = true;

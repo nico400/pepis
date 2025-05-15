@@ -26,7 +26,7 @@ public class moviment : MonoBehaviour
     public Vector2 dirMouse { get; private set; }
     public bool jumpInput { get; private set; }
     public bool interactive { get; private set; }
-    public bool _launc { get; private set; }
+    public bool holdObj { get; private set; }
 
     bool runShift;
     bool runGamepad;
@@ -75,7 +75,7 @@ public class moviment : MonoBehaviour
         dirMouse = inputsHandler.mouseXY;
         jumpInput = inputsHandler.jump;
         interactive = inputsHandler.interactived;
-        _launc = inputsHandler.launc;
+        holdObj = inputsHandler.holdOrNot;
 
         if (dirMove == Vector2.zero)
         {

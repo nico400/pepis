@@ -9,7 +9,7 @@ public class getInputsHandler : MonoBehaviour
     public bool jump { get; private set; }
     public bool runShift { get; private set; }
     public bool runGamepad { get; private set; }
-    public bool launc { get; private set; }
+    public bool holdOrNot { get; private set; }
     public bool interactived { get; private set; }
     public bool exitUiPainel { get; private set; }
     public bool openUiPinal { get; private set; }
@@ -80,11 +80,11 @@ public class getInputsHandler : MonoBehaviour
 
     void _Startlaunc(InputAction.CallbackContext contex)
     {
-        launc = true;
+        holdOrNot = true;
     }
     void _Stoplaunc(InputAction.CallbackContext contex)
     {
-        launc = false;
+        holdOrNot = false;
     }
     void StartRun(InputAction.CallbackContext contex)
     {

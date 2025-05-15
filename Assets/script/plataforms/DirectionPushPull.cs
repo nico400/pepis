@@ -16,8 +16,8 @@ public class DirectionPushPull : MonoBehaviour
     Vector3 dirToFoward;
     Vector3 dirToBackward;
 
-    public Vector3 backOrFoward_nextPoint {  get; private set; }
-    public Vector3 backOrFoward_backPoint { get; private set; }
+    public float backOrFoward_nextPoint {  get; private set; }
+    public float backOrFoward_backPoint { get; private set; }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -67,12 +67,12 @@ public class DirectionPushPull : MonoBehaviour
             if (nextPoint != null)
             {
                 dirToFoward = (nextPoint.position - currentPoint.position).normalized;
-                backOrFoward_nextPoint = Vector3.Dot(dirToFoward, directionToPlayer) * dirToFoward;             
+                backOrFoward_nextPoint = Vector3.Dot(dirToFoward, directionToPlayer);             
             }   
             if (backPoint != null)
             {
                 dirToBackward = (backPoint.position - currentPoint.position).normalized;
-                backOrFoward_backPoint = Vector3.Dot(dirToBackward, directionToPlayer) * dirToBackward;
+                backOrFoward_backPoint = Vector3.Dot(dirToBackward, directionToPlayer);
             }             
         }
     }
