@@ -14,7 +14,7 @@ public class getInputsHandler : MonoBehaviour
     public bool exitUiPainel { get; private set; }
     public bool openUiPinal { get; private set; }
 
-    InputAction launchBall;
+    InputAction HoldObj;
     InputAction inter;
     InputAction ruing;
     InputAction ruingGamepad;
@@ -28,15 +28,15 @@ public class getInputsHandler : MonoBehaviour
     void OnEnable()
     {
         inputAction.Enable();
-        launchBall = inputAction.Player.launchBall;
+        HoldObj = inputAction.Player.launchBall;
         inter = inputAction.Player.Interact;
         ruing = inputAction.Player.runing;
         ruingGamepad = inputAction.Player.runGamepad;
         exitUi = inputAction.ui.ExitPainel;
         openInventory = inputAction.ui.OpenPainel;
 
-        launchBall.started += _Startlaunc;
-        launchBall.canceled += _Stoplaunc;
+        HoldObj.started += _Startlaunc;
+        HoldObj.canceled += _Stoplaunc;
         inter.started += Startinteractive;
         inter.canceled += Stoptinteractive;     
     }

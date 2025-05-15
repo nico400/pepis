@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class DirectionPushPull : MonoBehaviour
 {
+    public static DirectionPushPull instance;
+
     [SerializeField] Transform Player;
     [SerializeField] GameObject objToPush;
     [SerializeField] Transform pointStart;
@@ -14,9 +16,14 @@ public class DirectionPushPull : MonoBehaviour
     Vector3 dirToFoward;
     Vector3 dirToBackward;
 
+    public Vector3 backOrFoward_nextPoint {  get; private set; }
+    public Vector3 backOrFoward_backPoint { get; private set; }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        instance = this;
+
         objToPush.transform.position = pointStart.position;
         currentPoint = pointStart;
     }
@@ -56,13 +63,17 @@ public class DirectionPushPull : MonoBehaviour
                 }
             }
             //direction to next and to back
-            if(nextPoint != null)
+            Vector3 directionToPlayer = (Player.position - objToPush.transform.position).normalized;
+            if (nextPoint != null)
+            {
                 dirToFoward = (nextPoint.position - currentPoint.position).normalized;
-            if(backPoint != null)
+                backOrFoward_nextPoint = Vector3.Dot(dirToFoward, directionToPlayer) * dirToFoward;             
+            }   
+            if (backPoint != null)
+            {
                 dirToBackward = (backPoint.position - currentPoint.position).normalized;
-
-            Debug.DrawRay(objToPush.transform.position, dirToFoward * 2, Color.blue);
-            Debug.DrawRay(objToPush.transform.position, dirToBackward * 2, Color.blue);
+                backOrFoward_backPoint = Vector3.Dot(dirToBackward, directionToPlayer) * dirToBackward;
+            }             
         }
     }
 
