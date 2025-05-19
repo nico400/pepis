@@ -31,8 +31,8 @@ public class moviment : MonoBehaviour
     bool runShift;
     bool runGamepad;
 
+    public bool canHold;
     public bool runing;
-
     public bool canMove;
     public bool canJump;
 
@@ -45,6 +45,7 @@ public class moviment : MonoBehaviour
         instance = this;
         canMove = true;
         canJump = true;
+        canHold = true;
     }
     // Update is called once per frame
     void Update()
@@ -98,9 +99,7 @@ public class moviment : MonoBehaviour
             else
                 runing = false;
 
-        }
-
-       
+        }     
     }
     void dirMovementPlayer()
     {

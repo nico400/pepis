@@ -27,7 +27,7 @@ public class launchBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (moviment.instance.interactive && objGrab != null)
+        if (moviment.instance.interactive && objGrab != null && moviment.instance.canHold)
         {
             StartCoroutine(getBall());
         }
@@ -39,7 +39,7 @@ public class launchBall : MonoBehaviour
     IEnumerator getBall()
     {
         Grab = true;
-        
+        moviment.instance.canHold = false;
 
         while (Grab)
         {
@@ -55,7 +55,6 @@ public class launchBall : MonoBehaviour
 
             yield return null;
         }
-
         
     }
     IEnumerator launBall(Vector3 velocity)
@@ -77,6 +76,7 @@ public class launchBall : MonoBehaviour
         {
             line.enabled = false;
             moviment.instance.canJump = true;
+            moviment.instance.canHold = true;
             if (launc)
             {
                 Grab = false;

@@ -145,7 +145,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   inputsHandler: {fileID: 0}
-  isGround: 0
+  canHold: 0
   runing: 0
   canMove: 0
   canJump: 0
@@ -342,6 +342,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moving: 0
   isRun: 0
+  isground: 0
+  inPillar: 0
   anim: {fileID: 285393658865111951}
 --- !u!1001 &764882030024036304
 PrefabInstance:
