@@ -8,8 +8,6 @@ public class PushPullObj : MonoBehaviour
     [SerializeField] Vector3 pointToPullPush;
     [SerializeField] bool iPullObj;
 
-    [SerializeField] Vector3 dirToNew;
-
     private void OnTriggerStay(Collider other)
     {
         Vector3 drToPlayer = (player.position - transform.position).normalized;
@@ -21,21 +19,14 @@ public class PushPullObj : MonoBehaviour
         if (Physics.Raycast(transform.position + Vector3.up * 0.5f, -transform.up, out hit, 2, ground))
             pointToPullPush.y = hit.point.y;
 
-        dirToNew = _directionPushPull.backOrFoward_nextPoint;
-
-
-        if (iPullObj)
+        /*if (iPullObj)
         {           
             player.position = pointToPullPush;
             player.transform.rotation = Quaternion.LookRotation(-drToPlayer, Vector3.up);
 
-            Vector3 dirToPushOrPull = moviment.instance.dirToWalk;
-            Vector3 dirToNext = _directionPushPull.backOrFoward_nextPoint;
-            Vector3 dirToBack = _directionPushPull.backOrFoward_backPoint;
 
 
-
-        }
+        }*/
     }
     private void OnDrawGizmos()
     {

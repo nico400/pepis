@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class DirectionPushPull : MonoBehaviour
@@ -10,20 +11,20 @@ public class DirectionPushPull : MonoBehaviour
 
     [SerializeField] Transform[] pointsToMove;
     [SerializeField] Transform currentPoint;
-    [SerializeField] Transform nextPoint;
-    [SerializeField] Transform backPoint;
+    public Transform nextPoint { get; private set; }
+    public Transform backPoint { get; private set; }
 
     Vector3 dirToFoward;
     Vector3 dirToBackward;
 
     public Vector3 backOrFoward_nextPoint {  get; private set; }
     public Vector3 backOrFoward_backPoint { get; private set; }
+    public float distance {  get; private set; }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         instance = this;
-
         objToPush.transform.position = pointStart.position;
         currentPoint = pointStart;
     }
@@ -33,18 +34,9 @@ public class DirectionPushPull : MonoBehaviour
     {    
         for (int i = 0; i < pointsToMove.Length; i++)
         {
-            //look to next point
-            if (i < pointsToMove.Length - 1)
-            {
-                pointsToMove[i].LookAt(pointsToMove[i + 1]);
-            }else if(i >= pointsToMove.Length - 1)
-            {
-                //last point look to penults
-                pointsToMove[i].LookAt(pointsToMove[i - 1]);
-            }
             //change Currentpoint
-            float distanceToPoint = Vector3.Distance(pointsToMove[i].position, objToPush.transform.position);
-            if (distanceToPoint <= 0)
+            /*distance = Vector3.Distance(pointsToMove[i].position, objToPush.transform.position);
+            if (distance < 0.1f)
             {
                 currentPoint = pointsToMove[i];
                 if(i == 0)
@@ -63,20 +55,28 @@ public class DirectionPushPull : MonoBehaviour
                 }
             }
             //direction to next and to back
-            Vector3 directionToPlayer = (Player.position - objToPush.transform.position).normalized;
+            /*Vector3 directionToPlayer = (Player.position - objToPush.transform.position).normalized;
             if (nextPoint != null)
             {
                 dirToFoward = (nextPoint.position - currentPoint.position).normalized;
-                backOrFoward_nextPoint = Vector3.Dot(dirToFoward, directionToPlayer) * dirToFoward;             
+                //backOrFoward_nextPoint = Vector3.Dot(dirToFoward, directionToPlayer) * dirToFoward;
+
+                backOrFoward_nextPoint = nextPoint.position - currentPoint.position;
+                Debug.DrawRay(currentPoint.transform.position + Vector3.up, backOrFoward_nextPoint, Color.blue);
             }   
             if (backPoint != null)
             {
                 dirToBackward = (backPoint.position - currentPoint.position).normalized;
-                backOrFoward_backPoint = Vector3.Dot(dirToBackward, directionToPlayer) * dirToBackward;
-            }             
+                //backOrFoward_backPoint = Vector3.Dot(dirToBackward, directionToPlayer) * dirToBackward;
+
+                backOrFoward_backPoint = backPoint.position - currentPoint.position;
+                Debug.DrawRay(currentPoint.transform.position + Vector3.up, backOrFoward_backPoint, Color.blue);
+                //print(backOrFoward_backPoint.magnitude);
+            }   */         
+
         }
     }
-
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
