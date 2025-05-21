@@ -2,39 +2,27 @@ using UnityEngine;
 
 public class detectedPoints : MonoBehaviour
 {
-    [SerializeField] Transform[] points;
-    [SerializeField] pushPull objToUseThisPoints;
-    [SerializeField] LayerMask objPushLayer;
-    [SerializeField] float distanceToIdentify;
-    [SerializeField] Transform player;
-    float maxVelue;
-    [SerializeField] Transform pointNear;
-    // Update is called once per frame
+    [SerializeField] Transform startPoints;
+    [SerializeField] Transform endPoints;
+    [SerializeField] Transform objPush;
+    public float dotLimit { get; private set; }
+    public Vector3 dirPoints { get; private set; }
+    private void Start()
+    {
+        startPoints.LookAt(endPoints.position);
+
+        objPush.position = startPoints.position;
+        objPush.rotation = startPoints.rotation;
+    }
+
     void Update()
     {
-        maxVelue = Mathf.Infinity;
-        for (int i = 0; i < points.Length; i++)
-        {
-            float distance = Vector3.Distance(points[i].position, player.position);
-            if (distance < maxVelue)
-            {
-                maxVelue = distance;
-                pointNear = points[i];
-            }
-        }
 
-    }
-    public void getPoints()
-    {
-        objToUseThisPoints.usePoints = points;
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
+        dirPoints = (endPoints.position - startPoints.position);
+        Vector3 dirStartPointToObjPush = (objPush.position - startPoints.position);
+        dotLimit = Vector3.Dot(dirPoints.normalized, dirStartPointToObjPush);
 
-        for (int i = 0; i < points.Length; i++)
-        {
-            Gizmos.DrawWireSphere(points[i].position, distanceToIdentify);
-        }
+        print(dotLimit);
+
     }
 }
