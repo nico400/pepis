@@ -11,6 +11,7 @@ public class moviment : MonoBehaviour
     [SerializeField] float acelSpeed;
     [SerializeField] float decelSpeed;
     [SerializeField] float jumpHeight;
+    [SerializeField] bool canDoubleJump;
 
     [Header("components")]
     [SerializeField] Rigidbody rb;
@@ -54,6 +55,7 @@ public class moviment : MonoBehaviour
         upNormal = getNormal();
         isGround = getGround();
         controllerSpeedMax();
+        dirMovementPlayer();
     }
     void FixedUpdate()
     {
@@ -66,9 +68,10 @@ public class moviment : MonoBehaviour
         }
 
         rb.useGravity = true;
-        dirMovementPlayer();
+
+        jumpPlayer();    
         speedController();
-        jumpPlayer();
+        
     }
     void getInputs()
     {
@@ -109,18 +112,20 @@ public class moviment : MonoBehaviour
     }
     void jumpPlayer()
     {
-        if (!canJump) return;
-        if (jumpInput && isGround)
+        float jumpforce = Mathf.Sqrt(2 * 9 * jumpHeight);
+        if (jumpInput && isGround && canJump)
         {
-            float jumpforce = Mathf.Sqrt(2 * 9 * jumpHeight);
             rb.linearVelocity = (Vector3.up * jumpforce) + horizontalVelocity;
+        }else if (canDoubleJump && !isGround && canJump)
+        {
+            StartCoroutine(doubleJump(jumpforce));
         }
-    }
-    
+    }   
     void speedController()
     {
         verticalVelocity = Vector3.Project(rb.linearVelocity, upNormal.normalized);
         horizontalVelocity = Vector3.ProjectOnPlane(rb.linearVelocity, upNormal.normalized);
+
         if (dirMove.magnitude > 0)
         {
             //acelareation
@@ -145,7 +150,10 @@ public class moviment : MonoBehaviour
         RaycastHit hit;
         Vector3 posOffset = transform.position + transform.up * 0.35f;
         if (Physics.Raycast(posOffset, -transform.up, out hit, 0.75f, ground))
+        {
+            canDoubleJump = true;
             return true;
+        }
         else
             return false;
     }
@@ -189,5 +197,14 @@ public class moviment : MonoBehaviour
     public bool isGrab(bool _isGrab)
     {
         return _isGrab;
+    }
+    IEnumerator doubleJump(float jumpforce)
+    {
+        yield return new WaitForSecondsRealtime(.65f);
+        if (jumpInput)
+        {
+            rb.linearVelocity = (Vector3.up * jumpforce) + horizontalVelocity;
+            canDoubleJump = false;
+        }
     }
 }

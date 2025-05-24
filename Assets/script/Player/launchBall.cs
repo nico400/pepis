@@ -16,6 +16,9 @@ public class launchBall : MonoBehaviour
     [SerializeField] float timeOfTheFlight;
     bool launc;
 
+    public delegate void OnDestryObj();
+    public static event OnDestryObj _OndestroyObj;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,7 +36,7 @@ public class launchBall : MonoBehaviour
         }
         if (iCanLaunch)
         {
-            StartCoroutine(launBall(localPosObj.forward * 15 + localPosObj.up * 4));
+            StartCoroutine(launBall(localPosObj.forward * 15 + localPosObj.up * 4));            
         }
     }
     IEnumerator getBall()
@@ -44,6 +47,7 @@ public class launchBall : MonoBehaviour
         while (Grab)
         {
             //get ball
+
             moviment.instance.canJump = false;
             objGrab.GetComponent<Rigidbody>().useGravity = false;
             objGrab.transform.position = localPosObj.position;
@@ -79,6 +83,7 @@ public class launchBall : MonoBehaviour
             moviment.instance.canHold = true;
             if (launc)
             {
+
                 Grab = false;
                 moviment.instance.canMove = true;
                 objGrab.GetComponent<Rigidbody>().useGravity = true;
@@ -86,7 +91,7 @@ public class launchBall : MonoBehaviour
                 moviment.instance.canMove = true;
                 aimEnable = false;
                 launc = false;
-                iCanLaunch = false;
+                iCanLaunch = false;           
             }
         }
 
@@ -108,6 +113,5 @@ public class launchBall : MonoBehaviour
         }
 
         return lineRenderPoints;
-
     }
 }
