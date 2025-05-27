@@ -4,7 +4,7 @@ public class controllCams : MonoBehaviour
 {
     [SerializeField] GameObject cam1;
     [SerializeField] GameObject cam2;
-    [SerializeField] GameObject camShake;
+    //[SerializeField] GameObject camShake;
 
     void Update()
     {
@@ -13,21 +13,15 @@ public class controllCams : MonoBehaviour
             //aim
             cam1.gameObject.SetActive(false);
             cam2.gameObject.SetActive(true);
-            camShake.gameObject.SetActive(false);
+            //camShake.gameObject.SetActive(false);
         } 
-        /*else
-        {
-            //shake
-            cam2.gameObject.SetActive(false);
-            cam1.gameObject.SetActive(false);
-            camShake.gameObject.SetActive(true);
-        }*/
+        
         else
         {
             //normal
             cam2.gameObject.SetActive(false);
             cam1.gameObject.SetActive(true);
-            camShake.gameObject.SetActive(false);
+            //camShake.gameObject.SetActive(false);
         }
     }
 }

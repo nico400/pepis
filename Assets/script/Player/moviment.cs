@@ -203,8 +203,10 @@ public class moviment : MonoBehaviour
         yield return new WaitForSecondsRealtime(.65f);
         if (jumpInput)
         {
-            rb.linearVelocity = (Vector3.up * jumpforce) + horizontalVelocity;
+            rb.linearVelocity = (Vector3.up * jumpforce / 1.5f) + horizontalVelocity;
             canDoubleJump = false;
+            yield return null;
         }
+        yield return null;
     }
 }

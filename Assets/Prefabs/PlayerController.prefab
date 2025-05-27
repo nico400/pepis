@@ -138,7 +138,8 @@ MonoBehaviour:
   MaxSpeed: 7
   acelSpeed: 15
   decelSpeed: 30
-  jumpHeight: 3.5
+  jumpHeight: 3
+  canDoubleJump: 0
   rb: {fileID: 1862863089398191963}
   Cam: {fileID: 0}
   ground:
