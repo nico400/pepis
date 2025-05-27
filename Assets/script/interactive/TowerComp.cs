@@ -5,6 +5,9 @@ public class TowerComp : MonoBehaviour
     [SerializeField] int idTower;
     public bool activeTower {  get; private set; }
 
+    public delegate void OnCutSceneActive();
+    public static event OnCutSceneActive _OnCutSceneActive;
+
     private void Start()
     {
         ActiveLever.callback += Active;
@@ -14,6 +17,7 @@ public class TowerComp : MonoBehaviour
         if (id == idTower)
         {
             activeTower = true;
+            _OnCutSceneActive?.Invoke();
         }
     }
 }
