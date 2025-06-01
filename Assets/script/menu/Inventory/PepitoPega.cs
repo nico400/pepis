@@ -8,9 +8,8 @@ public class PepitoPega : MonoBehaviour {
 
     private void Start() {
 
-        inventario = FindFirstObjectOfType<Inventario>(); 
+        inventario = FindObjectOfType<Inventario>(); 
     }
-
     void Update() {
 
         if (Input.GetKeyDown(KeyCode.E)) 
