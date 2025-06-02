@@ -11,13 +11,15 @@ public class moviment : MonoBehaviour
     [SerializeField] float acelSpeed;
     [SerializeField] float decelSpeed;
     [SerializeField] float jumpHeight;
-    [SerializeField] bool canDoubleJump;
+    [SerializeField] float JumpDelay;
+    [SerializeField] bool doubleJump;
 
     [Header("components")]
     [SerializeField] Rigidbody rb;
     [SerializeField] Transform Cam;
     [SerializeField] LayerMask ground;
     [SerializeField] getInputsHandler inputsHandler;
+
     public bool isGround { get; private set; }
 
     [Header("Interactive")]
@@ -28,7 +30,7 @@ public class moviment : MonoBehaviour
     public bool jumpInput { get; private set; }
     public bool interactive { get; private set; }
     public bool holdObj { get; private set; }
-
+    
     bool runShift;
     bool runGamepad;
 
@@ -45,8 +47,8 @@ public class moviment : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         instance = this;
         canMove = true;
-        canJump = true;
         canHold = true;
+        canJump = true;
     }
     // Update is called once per frame
     void Update()
@@ -113,12 +115,22 @@ public class moviment : MonoBehaviour
     void jumpPlayer()
     {
         float jumpforce = Mathf.Sqrt(2 * 9 * jumpHeight);
-        if (jumpInput && isGround && canJump)
+
+        if (!canJump) return;
+
+        if (isGround && jumpInput)
         {
             rb.linearVelocity = (Vector3.up * jumpforce) + horizontalVelocity;
-        }else if (canDoubleJump && !isGround && canJump)
+            JumpDelay = Time.time + 0.3f;
+            doubleJump = false;
+        }
+        else if (!isGround)
         {
-            StartCoroutine(doubleJump(jumpforce));
+            if (jumpInput && !doubleJump && Time.time > JumpDelay)
+            {
+                doubleJump = true;
+                rb.linearVelocity = (Vector3.up * jumpforce) + horizontalVelocity;
+            }
         }
     }   
     void speedController()
@@ -151,7 +163,6 @@ public class moviment : MonoBehaviour
         Vector3 posOffset = transform.position + transform.up * 0.35f;
         if (Physics.Raycast(posOffset, -transform.up, out hit, 0.75f, ground))
         {
-            canDoubleJump = true;
             return true;
         }
         else
@@ -198,15 +209,5 @@ public class moviment : MonoBehaviour
     {
         return _isGrab;
     }
-    IEnumerator doubleJump(float jumpforce)
-    {
-        yield return new WaitForSecondsRealtime(.65f);
-        if (jumpInput)
-        {
-            rb.linearVelocity = (Vector3.up * jumpforce / 1.5f) + horizontalVelocity;
-            canDoubleJump = false;
-            yield return null;
-        }
-        yield return null;
-    }
+
 }

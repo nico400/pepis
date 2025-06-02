@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class rotatePlayer : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class rotatePlayer : MonoBehaviour
     [SerializeField] float sencX;
     [SerializeField] float sencY;
 
+    [SerializeField] float mouseY;
+
     // Update is called once per frame
     void Update()
     {
@@ -19,16 +22,22 @@ public class rotatePlayer : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotPillar, speedRotate * Time.deltaTime);
             return;
         }
-        if (MovimentWall.Instance.inWall)
-        {
-            Quaternion rotWall = Quaternion.LookRotation(MovimentWall.Instance.dirToWallNormal, transform.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotWall, speedRotate * Time.deltaTime);
-            return;
-        }
         if (launchBall.instance.aimEnable)
         {
             transform.rotation = Quaternion.Euler(0, moviment.instance.dirMouse.x * sencX, 0) * transform.rotation;
-            originLaunchBallPoint.localRotation = Quaternion.Euler(-moviment.instance.dirMouse.y * sencY, 0, 0) * originLaunchBallPoint.localRotation;
+           
+            if (originLaunchBallPoint.localRotation.x < -.3f)
+            {
+                originLaunchBallPoint.localRotation = Quaternion.Euler( sencY, 0, 0) * originLaunchBallPoint.localRotation;
+            }
+            else if(originLaunchBallPoint.localRotation.x > .3f)
+            {
+                originLaunchBallPoint.localRotation = Quaternion.Euler( -sencY, 0, 0) * originLaunchBallPoint.localRotation;
+            }
+            else
+            {
+                originLaunchBallPoint.localRotation = Quaternion.Euler(-moviment.instance.dirMouse.y * sencY, 0, 0) * originLaunchBallPoint.localRotation;
+            }
             return;
         }
 
