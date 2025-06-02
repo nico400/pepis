@@ -8,6 +8,8 @@ public class ActiveLever : MonoBehaviour
     public delegate void LeverCallback(int id);
     public static event LeverCallback callback;
 
+    [SerializeField] Animator animLever;
+
     private void Start()
     {
         active = false;
@@ -21,6 +23,7 @@ public class ActiveLever : MonoBehaviour
             {
                 callback?.Invoke(id_linkTower);
                 active = true;
+                animLever.Play("active");
             }
         }
     }
