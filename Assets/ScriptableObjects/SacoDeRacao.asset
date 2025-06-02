@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: SacoDeRacao
   m_EditorClassIdentifier: 
   Icone: {fileID: 0}
-  Name: 
-  Description: 
+  Name: "Saco De Ra\xE7\xE3o"
+  Description: "Huummmm, adoro essa marca de ra\xE7\xE3o, n\xE3o sou qualquer um
+    pra comer ra\xE7\xE3o prom\xEDscua"
