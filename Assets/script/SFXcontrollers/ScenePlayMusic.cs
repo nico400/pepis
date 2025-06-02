@@ -2,35 +2,27 @@ using UnityEngine;
 
 public class ScenePlayMusic : MonoBehaviour
 {
-    [SerializeField] AudioClip musicOne;
-    [SerializeField] AudioClip musicTwo;
+    public AudioClip[] clips;
+    private AudioSource audioSource;
+    private int currentIndex = 0;
 
-    [SerializeField] AudioSource playingMuisic;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playingMuisic.clip = musicOne;
-        playingMuisic.Play();
+        audioSource = GetComponent<AudioSource>();
+        PlayCurrentClip();
     }
 
-    // Update is called once per frame
-    void Update()
+    void PlayCurrentClip()
     {
-        Invoke("playingNextMusic", playingMuisic.clip.length);
+        audioSource.clip = clips[currentIndex];
+        audioSource.Play();
+        Invoke("PlayNextTrack", audioSource.clip.length);
     }
 
-    void playingNextMusic()
+    void PlayNextTrack()
     {
-        playingMuisic.Stop();
-        if (playingMuisic.clip == musicOne)
-        {
-            playingMuisic.clip = musicTwo;
-        }else if (playingMuisic.clip == musicTwo)
-        {
-            playingMuisic.clip = musicOne;
-        }
-        playingMuisic.Play();
+        audioSource.Stop();
+        currentIndex = (currentIndex + 1) % clips.Length;
+        PlayCurrentClip();
     }
-
 }
