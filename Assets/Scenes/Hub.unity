@@ -426,14 +426,13 @@ GameObject:
   - component: {fileID: 101180501}
   - component: {fileID: 101180504}
   - component: {fileID: 101180503}
-  - component: {fileID: 101180502}
   m_Layer: 5
   m_Name: painelDetalhes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &101180501
 RectTransform:
   m_ObjectHideFlags: 0
@@ -456,19 +455,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: -0.000030517578}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &101180502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 101180500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002e60fec34931547bd776c6623d1805, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itens: []
 --- !u!114 &101180503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3964,7 +3950,7 @@ GameObject:
   - component: {fileID: 1097898589}
   - component: {fileID: 1097898590}
   m_Layer: 5
-  m_Name: Content
+  m_Name: InventarioContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4021,8 +4007,8 @@ MonoBehaviour:
   m_StartAxis: 0
   m_CellSize: {x: 200, y: 200}
   m_Spacing: {x: 163, y: 71.6}
-  m_Constraint: 0
-  m_ConstraintCount: 2
+  m_Constraint: 1
+  m_ConstraintCount: 5
 --- !u!1 &1172871437
 GameObject:
   m_ObjectHideFlags: 0
@@ -4672,6 +4658,7 @@ GameObject:
   - component: {fileID: 1540528295}
   - component: {fileID: 1540528294}
   - component: {fileID: 1540528296}
+  - component: {fileID: 1540528297}
   m_Layer: 5
   m_Name: PanelInventory
   m_TagString: Untagged
@@ -4750,11 +4737,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 002e60fec34931547bd776c6623d1805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itens:
-  - {fileID: 11400000, guid: b580856d3b4c14c4f97f9f678fb8171d, type: 2}
-  - {fileID: 11400000, guid: ef414a9b5241c704b93c36683d0ed624, type: 2}
-  - {fileID: 11400000, guid: 73b7f1a51821e304492ccd658bb3c62f, type: 2}
-  - {fileID: 11400000, guid: e764771b8a78fa04fa6cf02a1574f1ad, type: 2}
+  itens: []
+--- !u!114 &1540528297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540528292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8e80ca1f7d7d0d48a28dde94e050997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  container: {fileID: 1097898589}
+  itemPrefab: {fileID: 7807921995767911825, guid: 76f4f1c836b86ff4292f76bfc32ddfe7, type: 3}
+  inventariopassivo: {fileID: 1889388328}
+  painelDetalhes: {fileID: 101180500}
+  imagemDetalhes: {fileID: 1057581283}
+  nomeDetalhes: {fileID: 582511136}
+  descricaoDetalhes: {fileID: 720644139}
 --- !u!1 &1550263143
 GameObject:
   m_ObjectHideFlags: 0
@@ -5568,8 +5570,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.0022354, y: 11.2792}
-  m_SizeDelta: {x: 1840.3, y: -337.0282}
+  m_AnchoredPosition: {x: -10.6347, y: -282.5523}
+  m_SizeDelta: {x: 1819.0261, y: -619.9237}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1889388330
 MonoBehaviour:
