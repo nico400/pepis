@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3867292625694659680}
   - component: {fileID: 8111809739559610269}
   - component: {fileID: 3663076179686717902}
+  - component: {fileID: 1956129680372414333}
   m_Layer: 0
   m_Name: MusicScene
   m_TagString: Untagged
@@ -145,3 +146,18 @@ MonoBehaviour:
   clips:
   - {fileID: 8300000, guid: 2101fc1a0dc8e9c42b8fb2bc81342548, type: 3}
   - {fileID: 8300000, guid: 61750e0d8e0ab764fa109e829df4b4fe, type: 3}
+--- !u!114 &1956129680372414333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8621947548173834636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aaaa4e0982670049a4994e419fcea2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicLevel: {fileID: 8111809739559610269}
+  musicVolumeInGame: {fileID: 0}
+  inMenu: {fileID: 0}

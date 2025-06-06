@@ -36,6 +36,7 @@ public class MovimentInPillar : MonoBehaviour
     void movimentPillar()
     {
         rb.linearVelocity = Vector3.zero;
+        moviment.instance.doubleJump = true;
         RaycastHit hit;
         Collider[] collPillar = Physics.OverlapSphere(transform.position, radiusSphereColl, pillarLayer);
 
@@ -64,7 +65,7 @@ public class MovimentInPillar : MonoBehaviour
     }
     IEnumerator jumpInPillar()
     {
-        rb.linearVelocity = (-transform.forward * 8 + transform.up * 8);
+        rb.AddForce(-transform.forward * 8 + transform.up * 8, ForceMode.Impulse);
         inPillar = false;      
         yield return null;
     }

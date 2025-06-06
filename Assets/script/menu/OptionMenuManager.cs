@@ -36,7 +36,7 @@ public class OptionMenuManager : MonoBehaviour
     {
         if (optionInventoryPainel == null)
         {
-            Cursor.lockState = CursorLockMode.None;
+            Cursor.lockState = CursorLockMode.Confined;
             return;
         }
             
@@ -45,7 +45,7 @@ public class OptionMenuManager : MonoBehaviour
             optionOpened = true;
             moviment.instance.canMove = false;
             optionInventoryPainel.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
+            Cursor.lockState = CursorLockMode.Confined;
         }
         else if (getInputHandler.exitUiPainel && optionOpened)
         {
@@ -65,4 +65,5 @@ public class OptionMenuManager : MonoBehaviour
         OptionPainel.SetActive(true);
         inventoryPainel.SetActive(false);
     }
+
 }

@@ -49,7 +49,11 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(loadPlay());
         transition = true;
     }
-
+    public void closePainelButton()
+    {
+        painelOption.SetActive(false);
+        GameOptions.SetActive(true);
+    }
     IEnumerator loadPlay()
     {
         yield return new WaitForSeconds(1);

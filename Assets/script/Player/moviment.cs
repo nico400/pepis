@@ -12,7 +12,7 @@ public class moviment : MonoBehaviour
     [SerializeField] float decelSpeed;
     [SerializeField] float jumpHeight;
     [SerializeField] float JumpDelay;
-    [SerializeField] bool doubleJump;
+    
 
     [Header("components")]
     [SerializeField] Rigidbody rb;
@@ -38,6 +38,7 @@ public class moviment : MonoBehaviour
     public bool runing;
     public bool canMove;
     public bool canJump;
+    public bool doubleJump;
 
     Vector3 verticalVelocity;
     Vector3 horizontalVelocity;
