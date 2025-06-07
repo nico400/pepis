@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f3a85aa32b0d24a922b7078cdaa974, type: 3}
   m_Name: Racao
   m_EditorClassIdentifier: 
-  Icone: {fileID: 0}
+  Icone: {fileID: 21300000, guid: 527d31c515ffcdf44a64301b9a0fb47a, type: 3}
   Name: HUBENSNACK
   Description: HIHIHIHA
