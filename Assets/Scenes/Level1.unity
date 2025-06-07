@@ -11518,7 +11518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 07e3b754547970a4199ccffdd49eb0ab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 579.93
+      value: 579.00244
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 07e3b754547970a4199ccffdd49eb0ab, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11526,11 +11526,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 07e3b754547970a4199ccffdd49eb0ab, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 758.68
+      value: 769.1381
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 07e3b754547970a4199ccffdd49eb0ab, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8660259
+      value: 0.99144506
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 07e3b754547970a4199ccffdd49eb0ab, type: 3}
       propertyPath: m_LocalRotation.x
@@ -11538,7 +11538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 07e3b754547970a4199ccffdd49eb0ab, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.49999917
+      value: 0.13052519
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 07e3b754547970a4199ccffdd49eb0ab, type: 3}
       propertyPath: m_LocalRotation.z
@@ -11550,7 +11550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 07e3b754547970a4199ccffdd49eb0ab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 60
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 07e3b754547970a4199ccffdd49eb0ab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -13427,6 +13427,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -25.163
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c6387c9200a46144daec44a9555069c0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: dcee5d2989132ce43aa813757cfb16b4, type: 2}
     - target: {fileID: 919132149155446097, guid: c6387c9200a46144daec44a9555069c0, type: 3}
       propertyPath: m_Name
       value: islandLv1
