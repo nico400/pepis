@@ -35,10 +35,7 @@ public class OptionMenuManager : MonoBehaviour
     void Update()
     {
         if (optionInventoryPainel == null)
-        {
-            Cursor.lockState = CursorLockMode.Confined;
             return;
-        }
             
         if (getInputHandler.openUiPinal && !optionOpened)
         {

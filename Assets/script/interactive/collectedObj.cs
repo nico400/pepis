@@ -1,8 +1,11 @@
 using UnityEngine;
 
-public class colectedBiscoito : MonoBehaviour
+public class collectedObj : MonoBehaviour
 {
     float rotateValue;
+
+    public delegate void OnColecterObj();
+    public static event OnColecterObj _colecterObj;
 
     private void Update()
     {
@@ -21,6 +24,7 @@ public class colectedBiscoito : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Player"))
         {
+            _colecterObj?.Invoke();
             Destroy(this.gameObject);
         }
     }

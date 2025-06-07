@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,6 +20,7 @@ public class moviment : MonoBehaviour
     [SerializeField] Transform Cam;
     [SerializeField] LayerMask ground;
     [SerializeField] getInputsHandler inputsHandler;
+    [SerializeField] TextMeshProUGUI textUiPoint;
 
     public bool isGround { get; private set; }
 
@@ -39,6 +41,7 @@ public class moviment : MonoBehaviour
     public bool canMove;
     public bool canJump;
     public bool doubleJump;
+    public int points;
 
     Vector3 verticalVelocity;
     Vector3 horizontalVelocity;
@@ -59,6 +62,8 @@ public class moviment : MonoBehaviour
         isGround = getGround();
         controllerSpeedMax();
         dirMovementPlayer();
+
+        textUiPoint.text = points.ToString();
     }
     void FixedUpdate()
     {
