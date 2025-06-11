@@ -6,17 +6,22 @@ public class InventarioUI : MonoBehaviour
 {
     public Transform container;
     public GameObject itemPrefab;
-    public GameObject inventariopassivo;    
-    public GameObject painelDetalhes; 
-    public Image imagemDetalhes; 
-    public TMP_Text nomeDetalhes; 
-    public TMP_Text descricaoDetalhes; 
+    public GameObject inventariopassivo;
+    public GameObject painelDetalhes;
+    public Image imagemDetalhes;
+    public TMP_Text nomeDetalhes;
+    public TMP_Text descricaoDetalhes;
     private Inventario inventario;
 
     private void Start()
     {
-        AtualizarInventarioUI();
+        inventario = FindObjectOfType<Inventario>();
+
         painelDetalhes.SetActive(false);
+    }
+    void Update()
+    {
+        AtualizarInventarioUI();
     }
 
     public void AtualizarInventarioUI()
@@ -42,4 +47,5 @@ public class InventarioUI : MonoBehaviour
         nomeDetalhes.text = item.Name;
         descricaoDetalhes.text = item.Description;
     }
+    
 }

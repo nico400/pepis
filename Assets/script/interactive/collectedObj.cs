@@ -3,6 +3,7 @@ using UnityEngine;
 public class collectedObj : MonoBehaviour
 {
     float rotateValue;
+    public ItemCreator item;
 
     public delegate void OnColecterObj();
     public static event OnColecterObj _colecterObj;

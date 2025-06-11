@@ -12,7 +12,7 @@ public class PepitoPega : MonoBehaviour {
     }
     void Update() {
 
-        if (Input.GetKeyDown(KeyCode.E)) 
+        if (Input.GetKeyDown(KeyCode.L)) 
         {
             ColetarItensProximos();
         }
@@ -24,11 +24,11 @@ public class PepitoPega : MonoBehaviour {
 
         foreach (Collider col in itensNoRaio) {
 
-            ColliderD ColliderD = col.GetComponent<ColliderD>();
-            if (ColliderD != null) {
+            collectedObj collectedObj = col.GetComponent<collectedObj>();
+            if (collectedObj != null) {
 
-                inventario.AdicionarItem(ColliderD.item); // Bota no inventario
-                Destroy(ColliderD.gameObject); // Disbota no mundo
+                inventario.AdicionarItem(collectedObj.item); // Bota no inventario
+                Destroy(collectedObj.gameObject); // Disbota no mundo
             }
         }
     }
