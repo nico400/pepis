@@ -10,7 +10,7 @@ public class CollectedPetisco : MonoBehaviour
 
     void addPointCollectedPetisco()
     {
-        moviment.instance.points++;
+        moviment.points++;
     }
 
 }

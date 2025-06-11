@@ -15,10 +15,8 @@ public class InventarioUI : MonoBehaviour
 
     private void Start()
     {
-        inventario = FindObjectOfType<Inventario>();
         AtualizarInventarioUI();
         painelDetalhes.SetActive(false);
-
     }
 
     public void AtualizarInventarioUI()
@@ -39,6 +37,7 @@ public class InventarioUI : MonoBehaviour
     public void MostrarDetalhes(ItemCreator item)
     {
         painelDetalhes.SetActive(true);
+        inventariopassivo.SetActive(true);
         imagemDetalhes.sprite = item.Icone;
         nomeDetalhes.text = item.Name;
         descricaoDetalhes.text = item.Description;
