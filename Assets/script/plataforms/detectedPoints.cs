@@ -22,7 +22,5 @@ public class detectedPoints : MonoBehaviour
         Vector3 dirStartPointToObjPush = (objPush.position - startPoints.position);
         dotLimit = Vector3.Dot(dirPoints.normalized, dirStartPointToObjPush);
 
-        print(dotLimit);
-
     }
 }

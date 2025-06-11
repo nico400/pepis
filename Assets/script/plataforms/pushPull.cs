@@ -6,7 +6,7 @@ public class pushPull : MonoBehaviour
     [SerializeField] detectedPoints pathToUseThisObj;
 
     [SerializeField] Transform player;
-    [SerializeField] bool canPush;
+    [SerializeField] bool isPush;
     [SerializeField] LayerMask ground;
 
     Vector3 dirToPush;
@@ -32,14 +32,15 @@ public class pushPull : MonoBehaviour
         directionToPushObj();
         positionToPush();
 
-        if (canPush)
+        if (isPush)
         {
-            objPush.Move(movimentDir * Time.deltaTime * 2);
-
+           
             if(pathToUseThisObj.dotLimit > pathToUseThisObj.dirPoints.magnitude)
                 objPush.Move(-pathToUseThisObj.dirPoints.normalized * Time.deltaTime * 2);
             if(pathToUseThisObj.dotLimit < 0)
                 objPush.Move(pathToUseThisObj.dirPoints.normalized * Time.deltaTime * 2);
+            else
+                objPush.Move(movimentDir * Time.deltaTime * 2);
         }
     }
 
@@ -53,30 +54,30 @@ public class pushPull : MonoBehaviour
 
         if (angle < 45 && angle > -45)
         {
-            dirToPush = transform.position + transform.forward * 1.5f;
+            dirToPush = transform.position + transform.forward * 1.3f;
             movimentDir = moviment.instance.dirMove.y * pathToUseThisObj.dirPoints.normalized * -1;
         }
         else if (angle > 135 || angle < -135)
         {
-            dirToPush = transform.position + transform.forward * -1.5f;
+            dirToPush = transform.position + transform.forward * -1.3f;
             movimentDir = (moviment.instance.dirMove.y * pathToUseThisObj.dirPoints.normalized);
         }
     }
     void positionToPush()
     {
-        //pussh in pull interactive
+        //pussh and pull interactive
         if (moviment.instance.holdObj && moviment.instance.canHold)
         {
-            canPush = true;
+            isPush = true;
         }
         else if (!moviment.instance.holdObj || !moviment.instance.canHold)
         {
-            canPush = false;
+            isPush = false;
         }
 
-        if (canPush)
+        if (isPush)
         {
-            player.position = dirToPush;
+            player.position = new Vector3(dirToPush.x, player.position.y, dirToPush.z);
             player.rotation = Quaternion.LookRotation(-dirToPlayer, player.transform.up);
             moviment.instance.canMove = false;
         }

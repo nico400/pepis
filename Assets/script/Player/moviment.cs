@@ -41,7 +41,7 @@ public class moviment : MonoBehaviour
     public bool canMove;
     public bool canJump;
     public bool doubleJump;
-    public int points;
+    public static int points;
 
     Vector3 verticalVelocity;
     Vector3 horizontalVelocity;
