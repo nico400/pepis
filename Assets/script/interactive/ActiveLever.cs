@@ -9,6 +9,7 @@ public class ActiveLever : MonoBehaviour
     public static event LeverCallback callback;
 
     [SerializeField] Animator animLever;
+    [SerializeField] AudioSource soundForActiveLaver;
 
     private void Start()
     {
@@ -24,6 +25,7 @@ public class ActiveLever : MonoBehaviour
                 callback?.Invoke(id_linkTower);
                 active = true;
                 animLever.Play("active");
+                soundForActiveLaver.Play();
             }
         }
     }
