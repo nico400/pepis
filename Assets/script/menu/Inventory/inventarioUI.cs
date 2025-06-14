@@ -15,7 +15,7 @@ public class InventarioUI : MonoBehaviour
 
     private void Start()
     {
-        inventario = FindObjectOfType<Inventario>();
+        inventario = FindAnyObjectByType<Inventario>();
 
         painelDetalhes.SetActive(false);
     }

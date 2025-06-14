@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Biscoito2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0c6b7452f7c8528409a24efb2e482044, type: 3}
+      propertyPath: m_TagString
+      value: Biscoito
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 65702495048144492, guid: 0c6b7452f7c8528409a24efb2e482044, type: 3}
@@ -110,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75b43947a9603d74eb6646cfccb7e06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
 --- !u!114 &5730351631491253845
 MonoBehaviour:
   m_ObjectHideFlags: 0
