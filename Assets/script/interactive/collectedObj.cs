@@ -21,12 +21,12 @@ public class collectedObj : MonoBehaviour
     }
 
 
-    private void OnTriggerStay(Collider other)
+    /*private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag.Equals("Player"))
         {
             _colecterObj?.Invoke();
             Destroy(this.gameObject);
         }
-    }
+    }*/
 }

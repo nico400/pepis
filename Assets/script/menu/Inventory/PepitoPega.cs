@@ -4,7 +4,7 @@ public class PepitoPega : MonoBehaviour {
     private Inventario inventario;
 
     private void Start() {
-        inventario = FindAnyObjectByType<Inventario>();
+        inventario = FindObjectOfType<Inventario>(); 
     }
 
     private void OnTriggerEnter(Collider other) {
