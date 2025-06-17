@@ -54,12 +54,12 @@ public class pushPull : MonoBehaviour
 
         if (angle < 45 && angle > -45)
         {
-            dirToPush = transform.position + transform.forward * 1.3f;
+            dirToPush = transform.position + transform.forward * 2.3f;
             movimentDir = moviment.instance.dirMove.y * pathToUseThisObj.dirPoints.normalized * -1;
         }
         else if (angle > 135 || angle < -135)
         {
-            dirToPush = transform.position + transform.forward * -1.3f;
+            dirToPush = transform.position + transform.forward * -2.3f;
             movimentDir = (moviment.instance.dirMove.y * pathToUseThisObj.dirPoints.normalized);
         }
     }

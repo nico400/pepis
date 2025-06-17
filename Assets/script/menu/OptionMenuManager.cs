@@ -6,15 +6,11 @@ public class OptionMenuManager : MonoBehaviour
     [SerializeField] GameObject inventoryPainel;
     [SerializeField] GameObject OptionPainel;
     [SerializeField] getInputsHandler getInputHandler;
-    [SerializeField] string nameUI;
-    [SerializeField] string invUI;
-    [SerializeField] string opUI;
 
     [SerializeField] bool optionOpened;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-        optionInventoryPainel = GameObject.Find(nameUI);
         getInputHandler = GetComponent<getInputsHandler>();
     }
     void Start()
