@@ -43,9 +43,14 @@ public class laserBounce : MonoBehaviour
             
             }else
             {
-                if (i < maxBounce - 1)
+                if (Physics.Raycast(ray, out hit, 500))
                 {
-                    laser.SetPosition(i + 1, ray.GetPoint(300));
+                    if(i < maxBounce - 1)
+                    laser.SetPosition(i + 1, hit.point);
+                }
+                else if (i < maxBounce - 1)
+                {
+                    laser.SetPosition(i + 1, ray.GetPoint(150));
                 }
             }
         }
