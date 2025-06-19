@@ -70,3 +70,5 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/models/modelsPepitosWelt/assets/materials/rock-face-03_ddd7e0a1-486e-453d-9427-a5e2dfccde87.meta
+Assets/models/modelsPepitosWelt/assets/materials/rock-face-03_ddd7e0a1-486e-453d-9427-a5e2dfccde87/rock-face-03_7834337c-d4a7-4469-9637-a7ce6b81230d.blend
