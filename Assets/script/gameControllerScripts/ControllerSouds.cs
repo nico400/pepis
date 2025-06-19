@@ -7,12 +7,7 @@ public class ControllerSouds : MonoBehaviour
     [SerializeField] Slider musicVolumeInGame;
     [SerializeField] Slider inMenu;
 
-    [SerializeField] float value;
-
-    private void Start()
-    {
-        
-    }
+    public static float value;
 
     void Update()
     {
