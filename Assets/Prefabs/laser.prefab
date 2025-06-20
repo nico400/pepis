@@ -174,7 +174,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 84f701b26cf9941499e959fa4378d349, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -278,6 +278,10 @@ MonoBehaviour:
   layerMirror:
     serializedVersion: 2
     m_Bits: 2048
+  layerCristal:
+    serializedVersion: 2
+    m_Bits: 8192
+  whatCristalIsActived: {fileID: 0}
 --- !u!65 &190976226002071777
 BoxCollider:
   m_ObjectHideFlags: 0

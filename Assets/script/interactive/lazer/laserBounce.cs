@@ -7,6 +7,13 @@ public class laserBounce : MonoBehaviour
     [SerializeField] Transform startLaser;
     [SerializeField] LayerMask layerMirror;
 
+    //collider in point of laser
+    Vector3 point;
+
+    //hit cristal
+    [SerializeField] LayerMask layerCristal;
+    [SerializeField] activedCristal whatCristalIsActived;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,6 +27,14 @@ public class laserBounce : MonoBehaviour
     {
         castLaser(startLaser.position, startLaser.forward);
 
+        Collider[] collInCristal = Physics.OverlapSphere(point, 1.75f, layerCristal);
+        if (collInCristal.Length > 0)
+        {
+            whatCristalIsActived.actived = true;
+        }else
+        {
+            whatCristalIsActived.actived = false;
+        }
     }
     void castLaser(Vector3 pos, Vector3 dir)
     {
@@ -37,22 +52,27 @@ public class laserBounce : MonoBehaviour
 
                 if (i < maxBounce - 1)
                 {
-                    Debug.DrawRay(pos, dir, Color.red);
                     laser.SetPosition(i + 1, hit.point);
-                }               
-            
-            }else
+                }                        
+            }
+            else
             {
                 if (Physics.Raycast(ray, out hit, 500))
                 {
                     if(i < maxBounce - 1)
                     laser.SetPosition(i + 1, hit.point);
+                    point = hit.point;
                 }
                 else if (i < maxBounce - 1)
                 {
                     laser.SetPosition(i + 1, ray.GetPoint(150));
+                    point = Vector3.zero;
                 }
             }
         }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(point, 1.75f);
     }
 }
