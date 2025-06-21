@@ -1,16 +1,14 @@
 using UnityEngine;
 
-public class CollectedPetisco : MonoBehaviour
+public class CollectedPetisco : collectedObj
 {
-    
-    void Start()
+    private void OnTriggerStay(Collider other)
     {
-        collectedObj._colecterObj += addPointCollectedPetisco;
-    }
+        if (other.gameObject.tag.Equals("Player"))
+        {
 
-    void addPointCollectedPetisco()
-    {
-        moviment.points++;
+            moviment.points++;
+            Destroy(this.gameObject);
+        }
     }
-
 }

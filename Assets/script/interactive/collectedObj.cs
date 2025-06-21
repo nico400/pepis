@@ -1,12 +1,14 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+using UnityEditor.UI;
 
 public class collectedObj : MonoBehaviour
 {
     float rotateValue;
-    public ItemCreator item;
-
-    public delegate void OnColecterObj();
-    public static event OnColecterObj _colecterObj;
+    public string descriPt;
+    public string descriEng;
+    public GameObject ButtonUiReferring;
 
     private void Update()
     {
@@ -19,14 +21,4 @@ public class collectedObj : MonoBehaviour
         }
         transform.Rotate(new Vector3(0, 0, 1), rotateValue * 25);
     }
-
-
-    /*private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag.Equals("Player"))
-        {
-            _colecterObj?.Invoke();
-            Destroy(this.gameObject);
-        }
-    }*/
 }
