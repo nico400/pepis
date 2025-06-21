@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class rotateLaser : MonoBehaviour
+public class rotateOBJ : MonoBehaviour
 {
     [SerializeField] Transform posPlayer;
     float dirToRotate;

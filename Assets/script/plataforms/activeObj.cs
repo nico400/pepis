@@ -6,6 +6,19 @@ public class activeObj : MonoBehaviour
     [SerializeField] List<activedCristal> cristalActNecess = new List<activedCristal>();
     [SerializeField] GameObject actThisObj;
 
+    [SerializeField] bool itsKeyAct;
+
+    public delegate void OnKeyActiving();
+    public static event OnKeyActiving _Onkey;
+
+    public static bool stop = false;
+
+
+    private void Awake()
+    {
+        stop = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -21,5 +34,11 @@ public class activeObj : MonoBehaviour
         }
 
         actThisObj.SetActive(allAct);
+
+        if (itsKeyAct && allAct && !stop)
+        {
+            _Onkey?.Invoke();
+        }
+            
     }
 }
