@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] GameObject painelOption;
+    [SerializeField] GameObject painelControlle;
     [SerializeField] GameObject GameOptions;
     [SerializeField] getInputsHandler input;
 
@@ -18,6 +19,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {       
         painelOption.SetActive(false);
+        painelControlle.SetActive(false);
         GameOptions.SetActive(true);
         transition = false;
         imgGameObj.SetActive(false);
@@ -33,6 +35,7 @@ public class MainMenu : MonoBehaviour
         if (input.exitUiPainel)
         {        
             painelOption.SetActive(false);
+            painelControlle.SetActive(false);
             GameOptions.SetActive(true);
         }
         if (transition)
@@ -53,6 +56,16 @@ public class MainMenu : MonoBehaviour
     {
         painelOption.SetActive(false);
         GameOptions.SetActive(true);
+    }
+    public void closeControllePainelButton()
+    {
+        painelControlle.SetActive(false);
+        GameOptions.SetActive(true);
+    }
+    public void controllePainel()
+    {
+        GameOptions.SetActive(false);
+        painelControlle.SetActive(true);
     }
     IEnumerator loadPlay()
     {

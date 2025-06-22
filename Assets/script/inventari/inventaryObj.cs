@@ -17,37 +17,30 @@ public class inventaryObj : MonoBehaviour
 
     [SerializeField] string[] itemDescript;
 
+    public static inventaryObj instancia;
+
     private void Awake()
     {
-        itemInMyInvetory.Clear();
+
     }
 
-    private void Update()
+    public void Update()
     {
-        
-
-        /*itemDescript = new string[itemInMyInvetory.Count];
-        for (int i = 0; i < itemInMyInvetory.Count; i++)
-        {
-            itemInMyInvetory[i].ButtonUiReferring.SetActive(true);
-            itemDescript[i] = itemInMyInvetory[i].descriPt;
-        }*/
-
         for (int i = 0; i < itemInMyInvetory.Count; i++)
         {
             var item = itemInMyInvetory[i];
-
             item.ButtonUiReferring.SetActive(true);
 
             Button btn = item.ButtonUiReferring.GetComponent<Button>();
 
             string descPt = item.descriPt;
             string descEng = item.descriEng;
+
             btn.onClick.AddListener(() => ShowDescription(descPt, descEng));
         }
     }
     public void changeToMyImg(Button btn)
-    {         
+    {
         BTN_ImgItem = btn;
         imgInUI.sprite = BTN_ImgItem.image.sprite;
 
@@ -56,6 +49,7 @@ public class inventaryObj : MonoBehaviour
             if (item.ButtonUiReferring == btn.gameObject)
             {
                 PT.text = item.descriPt;
+                ENG.text = item.descriEng;
                 break;
             }
         }

@@ -24,9 +24,9 @@ public class eventKey : MonoBehaviour
     IEnumerator actKey()
     {
 
-        camDisable.SetActive(false);
-        yield return new WaitForSeconds(5);
         camDisable.SetActive(true);
+        yield return new WaitForSeconds(5);
+        camDisable.SetActive(false);
         activeObj.stop = true;
     }
 

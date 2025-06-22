@@ -1,3 +1,4 @@
+using NUnit.Framework.Interfaces;
 using UnityEngine;
 
 public class myItem : collectedObj
@@ -6,8 +7,12 @@ public class myItem : collectedObj
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-            inventaryObj.itemInMyInvetory.Add(this);
+            if (!inventaryObj.itemInMyInvetory.Contains(this))
+            {
+                inventaryObj.itemInMyInvetory.Add(this);
+            }
+
             Destroy(this.gameObject);
         }
-    }  
+    }
 }

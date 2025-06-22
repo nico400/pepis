@@ -3,8 +3,20 @@ using UnityEngine.SceneManagement;
 
 public class KeyColllider : MonoBehaviour
 {
+
+    public bool isOneKey;
     private void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene("hub");
+        if (other.gameObject.tag.Equals("Player"))
+        {
+            if (isOneKey)
+            {
+                OpenFinalDoor.keyOne = true;
+            }else
+            {
+                OpenFinalDoor.keyTwo = true;
+            }
+            SceneManager.LoadScene("hub");
+        }       
     }
 }
