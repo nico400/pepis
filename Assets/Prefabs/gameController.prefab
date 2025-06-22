@@ -96,6 +96,10 @@ MonoBehaviour:
   PT: {fileID: 0}
   ENG: {fileID: 0}
   itemDescript: []
+  "ra\xE7aoBT": {fileID: 0}
+  brinqBT: {fileID: 0}
+  cartaoBT: {fileID: 0}
+  fotoBT: {fileID: 0}
 --- !u!114 &5401115609404205295
 MonoBehaviour:
   m_ObjectHideFlags: 0

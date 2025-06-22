@@ -17,26 +17,34 @@ public class inventaryObj : MonoBehaviour
 
     [SerializeField] string[] itemDescript;
 
-    public static inventaryObj instancia;
-
-    private void Awake()
-    {
-
-    }
+    [SerializeField] GameObject raçaoBT;
+    [SerializeField] GameObject brinqBT;
+    [SerializeField] GameObject cartaoBT;
+    [SerializeField] GameObject fotoBT;
 
     public void Update()
     {
+       
         for (int i = 0; i < itemInMyInvetory.Count; i++)
         {
-            var item = itemInMyInvetory[i];
-            item.ButtonUiReferring.SetActive(true);
+            if (itemInMyInvetory[i] == null)
+                print(itemInMyInvetory[i] + ": null");
+            else
+            {
+                if (itemInMyInvetory[i].type == collectedObj.myType.racao)
+                    itemInMyInvetory[i].ButtonUiReferring = raçaoBT;
 
-            Button btn = item.ButtonUiReferring.GetComponent<Button>();
+                if (itemInMyInvetory[i].type == collectedObj.myType.pneu)
+                    itemInMyInvetory[i].ButtonUiReferring = brinqBT;
 
-            string descPt = item.descriPt;
-            string descEng = item.descriEng;
+                if (itemInMyInvetory[i].type == collectedObj.myType.cartao)
+                    itemInMyInvetory[i].ButtonUiReferring = cartaoBT;
 
-            btn.onClick.AddListener(() => ShowDescription(descPt, descEng));
+                if (itemInMyInvetory[i].type == collectedObj.myType.foto)
+                    itemInMyInvetory[i].ButtonUiReferring = fotoBT;
+
+                itemInMyInvetory[i].ButtonUiReferring.SetActive(true);
+            }
         }
     }
     public void changeToMyImg(Button btn)
@@ -53,10 +61,5 @@ public class inventaryObj : MonoBehaviour
                 break;
             }
         }
-    }
-    public void ShowDescription(string descriptionPt, string descriptionEng)
-    {
-        PT.text = descriptionPt;
-        ENG.text = descriptionEng;
     }
 }

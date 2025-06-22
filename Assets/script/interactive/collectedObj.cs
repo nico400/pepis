@@ -10,6 +10,11 @@ public class collectedObj : MonoBehaviour
     public string descriEng;
     public GameObject ButtonUiReferring;
 
+    public enum myType
+    { racao, pneu, cartao, foto }
+    public myType type;
+
+
     private void Update()
     {
         rotateValue = Time.deltaTime;
